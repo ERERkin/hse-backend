@@ -5,12 +5,14 @@ import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingMothData
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
+@Qualifier("modelMapper")
 public class BatteryChargingMothDataToBatteryChargingMothDataDtoMapper
         extends AbstractMapper<BatteryChargingMothData, BatteryChargingMothDataDto> {
     public BatteryChargingMothDataToBatteryChargingMothDataDtoMapper(ModelMapper mapper) {

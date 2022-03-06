@@ -5,6 +5,7 @@ import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingYearLimit;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
+@Qualifier("modelMapper")
 public class BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper
         extends AbstractMapper<BatteryChargingYearLimit, BatteryChargingYearLimitDto> {
     public BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper(ModelMapper mapper) {
