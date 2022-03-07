@@ -5,6 +5,7 @@ import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingYearLimit;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -13,20 +14,21 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-@Qualifier("modelMapper")
 public class BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper
         extends AbstractMapper<BatteryChargingYearLimit, BatteryChargingYearLimitDto> {
-    public BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper(ModelMapper mapper) {
+    public BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingYearLimit.class, BatteryChargingYearLimitDto.class);
     }
 
+    @Autowired
+    BatteryChargingMothDataToBatteryChargingMothDataDtoMapper batteryChargingMothDataToBatteryChargingMothDataDtoMapper;
+
     @Override
     public BatteryChargingYearLimitDto toDto(BatteryChargingYearLimit entity) {
+        List<BatteryChargingMothDataDto> batteryChargingMothDataDtoList =
+                batteryChargingMothDataToBatteryChargingMothDataDtoMapper
+                        .toDtos(entity.getMothDataList());
         BatteryChargingYearLimitDto batteryChargingYearLimitDto = super.toDto(entity);
-        if(Objects.isNull(batteryChargingYearLimitDto.getMothDataList())) return batteryChargingYearLimitDto;
-        List<BatteryChargingMothDataDto> batteryChargingMothDataDtoList = batteryChargingYearLimitDto.getMothDataList().stream().peek(batteryChargingMothDataDto -> {
-            batteryChargingMothDataDto.setYearLimit(null);
-        }).collect(Collectors.toList());
         batteryChargingYearLimitDto.setMothDataList(batteryChargingMothDataDtoList);
         return batteryChargingYearLimitDto;
     }

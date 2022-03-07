@@ -5,6 +5,7 @@ import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingPollutionSource;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -13,20 +14,20 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-@Qualifier("modelMapper")
 public class BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper
         extends AbstractMapper<BatteryChargingPollutionSource, BatteryChargingPollutionSourceDto> {
-    public BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper(ModelMapper mapper) {
+    public BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingPollutionSource.class, BatteryChargingPollutionSourceDto.class);
     }
 
+    @Autowired
+    BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper batteryChargingYearLimitToBatteryChargingYearLimitDtoMapper;
+
     @Override
     public BatteryChargingPollutionSourceDto toDto(BatteryChargingPollutionSource entity) {
+        List<BatteryChargingYearLimitDto> yearLimitList =
+                batteryChargingYearLimitToBatteryChargingYearLimitDtoMapper.toDtos(entity.getYearLimits());
         BatteryChargingPollutionSourceDto batteryChargingPollutionSourceDto = super.toDto(entity);
-        if(Objects.isNull(batteryChargingPollutionSourceDto.getYearLimits())) return batteryChargingPollutionSourceDto;
-        List<BatteryChargingYearLimitDto> yearLimitList = batteryChargingPollutionSourceDto.getYearLimits().stream().peek(yearLimitDto -> {
-            yearLimitDto.setPollutionSource(null);
-        }).collect(Collectors.toList());
         batteryChargingPollutionSourceDto.setYearLimits(yearLimitList);
         return batteryChargingPollutionSourceDto;
     }

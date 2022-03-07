@@ -28,7 +28,7 @@ public class AbstractService <
     @Override
     public D getById(Long id) {
         E entity = repository.findById(id).orElseThrow(
-                ()-> new ObjectNotFoundException("Couldn't find " + entityName +" with id " + id));;
+                ()-> new ObjectNotFoundException("Couldn't find " + entityName +" with id " + id));
         return mapper.toDto(entity);
     }
 

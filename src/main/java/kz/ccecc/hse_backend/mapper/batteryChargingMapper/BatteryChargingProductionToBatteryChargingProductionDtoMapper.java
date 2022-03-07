@@ -5,29 +5,29 @@ import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingProductionDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingProduction;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Component
-@Qualifier("modelMapper")
+@Qualifier("modelMapperFull")
 public class BatteryChargingProductionToBatteryChargingProductionDtoMapper
         extends AbstractMapper<BatteryChargingProduction, BatteryChargingProductionDto> {
-    public BatteryChargingProductionToBatteryChargingProductionDtoMapper(ModelMapper mapper) {
+    public BatteryChargingProductionToBatteryChargingProductionDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingProduction.class, BatteryChargingProductionDto.class);
     }
 
+    @Autowired
+    BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper batteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper;
+
     @Override
     public BatteryChargingProductionDto toDto(BatteryChargingProduction entity) {
+        List<BatteryChargingPollutionSourceDto> batteryChargingPollutionSourceDtoList =
+                batteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper.toDtos(entity.getPollutionSources());
         BatteryChargingProductionDto batteryChargingProductionDto = super.toDto(entity);
-        if(Objects.isNull(batteryChargingProductionDto.getPollutionSources())) return batteryChargingProductionDto;
-        List<BatteryChargingPollutionSourceDto> batteryChargingPollutionSourceDtos = batteryChargingProductionDto.getPollutionSources().stream().peek(pollutionSourceDto -> {
-            pollutionSourceDto.setProduction(null);
-        }).collect(Collectors.toList());
-        batteryChargingProductionDto.setPollutionSources(batteryChargingPollutionSourceDtos);
+        batteryChargingProductionDto.setPollutionSources(batteryChargingPollutionSourceDtoList);
         return batteryChargingProductionDto;
     }
 }

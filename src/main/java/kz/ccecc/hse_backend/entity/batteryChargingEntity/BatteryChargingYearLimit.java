@@ -17,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BatteryChargingYearLimit extends AbstractEntity {
+    @Column(name = "year")
+    Long year;
     @Column(name = "battery_model")
     String batteryModel;
     @Column(name = "work_time")

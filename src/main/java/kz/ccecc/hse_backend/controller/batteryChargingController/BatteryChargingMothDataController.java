@@ -51,4 +51,13 @@ public class BatteryChargingMothDataController {
         batteryChargingMothDataService.deleteById(id);
         return ResponseEntity.ok("Success");
     }
+
+    @ApiOperation(value = "API for getting quarter data by year data and quarter's number")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping("/quarter")
+    public ResponseEntity<?> getQuarterDateByYearAndQuarterNum(@RequestParam("yearLimitId") Long yearLimitId,
+                                                               @RequestParam("year") Long year,
+                                                               @RequestParam("num") Long num) {
+        return ResponseEntity.ok(batteryChargingMothDataService.getQuarterDateByYearAndQuarterNum(yearLimitId, year, num));
+    }
 }
