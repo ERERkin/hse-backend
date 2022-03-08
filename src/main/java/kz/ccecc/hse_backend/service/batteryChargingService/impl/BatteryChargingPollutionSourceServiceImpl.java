@@ -3,8 +3,8 @@ package kz.ccecc.hse_backend.service.batteryChargingService.impl;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingPollutionSourceDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingPollutionSource;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingPollutionSourceDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingYearLimitDtoMapper;
 import kz.ccecc.hse_backend.repository.batteryChargingRepository.BatteryChargingPollutionSourceRepository;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingPollutionSourceService;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingYearLimitService;
@@ -23,14 +23,14 @@ import java.util.Objects;
 public class BatteryChargingPollutionSourceServiceImpl extends AbstractService<BatteryChargingPollutionSource,
         BatteryChargingPollutionSourceDto,
         BatteryChargingPollutionSourceRepository,
-        BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper>
+        BatteryChargingPollutionSourceDtoMapper>
         implements BatteryChargingPollutionSourceService {
-    public BatteryChargingPollutionSourceServiceImpl(BatteryChargingPollutionSourceRepository repository, BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper mapper) {
+    public BatteryChargingPollutionSourceServiceImpl(BatteryChargingPollutionSourceRepository repository, BatteryChargingPollutionSourceDtoMapper mapper) {
         super(repository, mapper, "batteryChargingPollutionSource");
     }
 
     @Autowired
-    BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper batteryChargingYearLimitToBatteryChargingYearLimitDtoMapper;
+    BatteryChargingYearLimitDtoMapper batteryChargingYearLimitDtoMapper;
     @Autowired
     BatteryChargingYearLimitService batteryChargingYearLimitService;
 

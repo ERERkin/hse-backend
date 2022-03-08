@@ -23,7 +23,7 @@ public class BatteryChargingMothData extends AbstractEntity {
     Double workTime;
     @Column(name = "battery_count")
     Long batteryCount;
-    @Column(name = "battery_apacity")
+    @Column(name = "battery_capacity")
     Double batteryCapacity;
     @ManyToOne(targetEntity = BatteryChargingYearLimit.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "year_limit_id")

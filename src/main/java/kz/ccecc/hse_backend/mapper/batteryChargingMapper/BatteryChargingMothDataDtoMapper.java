@@ -14,9 +14,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
-public class BatteryChargingMothDataToBatteryChargingMothDataDtoMapper
+public class BatteryChargingMothDataDtoMapper
         extends AbstractMapper<BatteryChargingMothData, BatteryChargingMothDataDto> {
-    public BatteryChargingMothDataToBatteryChargingMothDataDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingMothDataDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingMothData.class, BatteryChargingMothDataDto.class);
         mapper.createTypeMap(BatteryChargingMothDataDto.class, BatteryChargingMothData.class).addMappings(mr -> {
             mr.using(new MonthStringToMonthDateConverter()).map(BatteryChargingMothDataDto::getMonth,
@@ -31,16 +31,6 @@ public class BatteryChargingMothDataToBatteryChargingMothDataDtoMapper
 
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter formatterMonth = DateTimeFormatter.ofPattern("yyyy-MM");
-
-    @Override
-    public BatteryChargingMothData toEntity(BatteryChargingMothDataDto dto) {
-        return super.toEntity(dto);
-    }
-
-    @Override
-    public BatteryChargingMothDataDto toDto(BatteryChargingMothData entity) {
-        return super.toDto(entity);
-    }
 
     public class MonthStringToMonthDateConverter extends AbstractConverter<String, LocalDate> {
         @Override

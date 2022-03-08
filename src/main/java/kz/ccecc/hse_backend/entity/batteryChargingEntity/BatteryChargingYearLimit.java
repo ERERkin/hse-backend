@@ -25,7 +25,7 @@ public class BatteryChargingYearLimit extends AbstractEntity {
     Double workTime;
     @Column(name = "battery_count")
     Long batteryCount;
-    @Column(name = "battery_apacity")
+    @Column(name = "battery_capacity")
     Double batteryCapacity;
     @ManyToOne(targetEntity = BatteryChargingPollutionSource.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "pollution_source_id")

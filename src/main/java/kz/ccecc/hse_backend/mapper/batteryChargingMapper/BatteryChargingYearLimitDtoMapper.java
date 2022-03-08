@@ -10,23 +10,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Component
-public class BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper
+public class BatteryChargingYearLimitDtoMapper
         extends AbstractMapper<BatteryChargingYearLimit, BatteryChargingYearLimitDto> {
-    public BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingYearLimitDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingYearLimit.class, BatteryChargingYearLimitDto.class);
     }
 
     @Autowired
-    BatteryChargingMothDataToBatteryChargingMothDataDtoMapper batteryChargingMothDataToBatteryChargingMothDataDtoMapper;
+    BatteryChargingMothDataDtoMapper batteryChargingMothDataDtoMapper;
 
     @Override
     public BatteryChargingYearLimitDto toDto(BatteryChargingYearLimit entity) {
         List<BatteryChargingMothDataDto> batteryChargingMothDataDtoList =
-                batteryChargingMothDataToBatteryChargingMothDataDtoMapper
+                batteryChargingMothDataDtoMapper
                         .toDtos(entity.getMothDataList());
         BatteryChargingYearLimitDto batteryChargingYearLimitDto = super.toDto(entity);
         batteryChargingYearLimitDto.setMothDataList(batteryChargingMothDataDtoList);

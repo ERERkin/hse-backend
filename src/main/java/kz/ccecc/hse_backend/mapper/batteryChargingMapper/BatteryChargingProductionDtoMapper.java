@@ -13,19 +13,19 @@ import java.util.List;
 
 @Component
 @Qualifier("modelMapperFull")
-public class BatteryChargingProductionToBatteryChargingProductionDtoMapper
+public class BatteryChargingProductionDtoMapper
         extends AbstractMapper<BatteryChargingProduction, BatteryChargingProductionDto> {
-    public BatteryChargingProductionToBatteryChargingProductionDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingProductionDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingProduction.class, BatteryChargingProductionDto.class);
     }
 
     @Autowired
-    BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper batteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper;
+    BatteryChargingPollutionSourceDtoMapper batteryChargingPollutionSourceDtoMapper;
 
     @Override
     public BatteryChargingProductionDto toDto(BatteryChargingProduction entity) {
         List<BatteryChargingPollutionSourceDto> batteryChargingPollutionSourceDtoList =
-                batteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper.toDtos(entity.getPollutionSources());
+                batteryChargingPollutionSourceDtoMapper.toDtos(entity.getPollutionSources());
         BatteryChargingProductionDto batteryChargingProductionDto = super.toDto(entity);
         batteryChargingProductionDto.setPollutionSources(batteryChargingPollutionSourceDtoList);
         return batteryChargingProductionDto;

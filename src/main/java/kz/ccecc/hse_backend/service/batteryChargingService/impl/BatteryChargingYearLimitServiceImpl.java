@@ -4,7 +4,7 @@ import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingMothDataDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingQuarterDataDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingYearLimit;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingYearLimitDtoMapper;
 import kz.ccecc.hse_backend.repository.batteryChargingRepository.BatteryChargingYearLimitRepository;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingMothDataService;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingYearLimitService;
@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class BatteryChargingYearLimitServiceImpl extends AbstractService<BatteryChargingYearLimit, BatteryChargingYearLimitDto, BatteryChargingYearLimitRepository, BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper>
+public class BatteryChargingYearLimitServiceImpl extends AbstractService<BatteryChargingYearLimit, BatteryChargingYearLimitDto, BatteryChargingYearLimitRepository, BatteryChargingYearLimitDtoMapper>
         implements BatteryChargingYearLimitService {
-    public BatteryChargingYearLimitServiceImpl(BatteryChargingYearLimitRepository repository, BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper mapper) {
+    public BatteryChargingYearLimitServiceImpl(BatteryChargingYearLimitRepository repository, BatteryChargingYearLimitDtoMapper mapper) {
         super(repository, mapper, "batteryChargingYearLimit");
     }
 

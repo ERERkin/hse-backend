@@ -10,23 +10,21 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Component
-public class BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper
+public class BatteryChargingPollutionSourceDtoMapper
         extends AbstractMapper<BatteryChargingPollutionSource, BatteryChargingPollutionSourceDto> {
-    public BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingPollutionSourceDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
         super(mapper, BatteryChargingPollutionSource.class, BatteryChargingPollutionSourceDto.class);
     }
 
     @Autowired
-    BatteryChargingYearLimitToBatteryChargingYearLimitDtoMapper batteryChargingYearLimitToBatteryChargingYearLimitDtoMapper;
+    BatteryChargingYearLimitDtoMapper batteryChargingYearLimitDtoMapper;
 
     @Override
     public BatteryChargingPollutionSourceDto toDto(BatteryChargingPollutionSource entity) {
         List<BatteryChargingYearLimitDto> yearLimitList =
-                batteryChargingYearLimitToBatteryChargingYearLimitDtoMapper.toDtos(entity.getYearLimits());
+                batteryChargingYearLimitDtoMapper.toDtos(entity.getYearLimits());
         BatteryChargingPollutionSourceDto batteryChargingPollutionSourceDto = super.toDto(entity);
         batteryChargingPollutionSourceDto.setYearLimits(yearLimitList);
         return batteryChargingPollutionSourceDto;

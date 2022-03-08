@@ -3,8 +3,8 @@ package kz.ccecc.hse_backend.service.batteryChargingService.impl;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingPollutionSourceDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingProductionDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingProduction;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingProductionToBatteryChargingProductionDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingPollutionSourceDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingProductionDtoMapper;
 import kz.ccecc.hse_backend.repository.batteryChargingRepository.BatteryChargingProductionRepository;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingPollutionSourceService;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingProductionService;
@@ -23,14 +23,14 @@ import java.util.Objects;
 public class BatteryChargingProductionServiceImpl extends AbstractService<BatteryChargingProduction,
         BatteryChargingProductionDto,
         BatteryChargingProductionRepository,
-        BatteryChargingProductionToBatteryChargingProductionDtoMapper>
+        BatteryChargingProductionDtoMapper>
         implements BatteryChargingProductionService {
-    public BatteryChargingProductionServiceImpl(BatteryChargingProductionRepository repository, BatteryChargingProductionToBatteryChargingProductionDtoMapper mapper) {
+    public BatteryChargingProductionServiceImpl(BatteryChargingProductionRepository repository, BatteryChargingProductionDtoMapper mapper) {
         super(repository, mapper, "batteryChargingProduction");
     }
 
     @Autowired
-    BatteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper batteryChargingPollutionSourceToBatteryChargingPollutionSourceDtoMapper;
+    BatteryChargingPollutionSourceDtoMapper batteryChargingPollutionSourceDtoMapper;
     @Autowired
     BatteryChargingPollutionSourceService batteryChargingPollutionSourceService;
 

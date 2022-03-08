@@ -4,7 +4,7 @@ import kz.ccecc.hse_backend.dto.ObjectNotFoundException;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingMothDataDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingQuarterDataDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingMothData;
-import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingMothDataToBatteryChargingMothDataDtoMapper;
+import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingMothDataDtoMapper;
 import kz.ccecc.hse_backend.repository.batteryChargingRepository.BatteryChargingMothDataRepository;
 import kz.ccecc.hse_backend.service.base.AbstractService;
 import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingMothDataService;
@@ -21,10 +21,10 @@ import java.util.List;
 public class BatteryChargingMothDataServiceImpl extends AbstractService<BatteryChargingMothData,
         BatteryChargingMothDataDto,
         BatteryChargingMothDataRepository,
-        BatteryChargingMothDataToBatteryChargingMothDataDtoMapper>
+        BatteryChargingMothDataDtoMapper>
         implements BatteryChargingMothDataService {
     public BatteryChargingMothDataServiceImpl(BatteryChargingMothDataRepository repository,
-                                              BatteryChargingMothDataToBatteryChargingMothDataDtoMapper mapper) {
+                                              BatteryChargingMothDataDtoMapper mapper) {
         super(repository, mapper, "batteryChargingMothData");
     }
 
