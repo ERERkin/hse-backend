@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @SuperBuilder
@@ -18,13 +19,13 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FuelCombustionPollutionSource extends AbstractEntity {
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     String name;
-    @Column(name = "number", nullable = false)
+    @Column(name = "number")
     String number;
-    @ManyToOne(targetEntity = BatteryChargingProduction.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = FuelCombustionProduction.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "production_id")
     FuelCombustionProduction production;
     @OneToMany(mappedBy = "pollutionSource", fetch = FetchType.EAGER)
-    List<FuelCombustionYearLimit> yearLimits;
+    List<FuelCombustionFuelType> fuelTypes;
 }

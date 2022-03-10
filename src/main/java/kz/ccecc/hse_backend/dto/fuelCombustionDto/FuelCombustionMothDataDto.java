@@ -14,13 +14,13 @@ import java.time.LocalDate;
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Зарядка аккумулятора | BatteryChargingMothDataDto", description = "объект данных за месяц")
+@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных за месяц")
 public class FuelCombustionMothDataDto extends AbstractDto {
     String month;
     BigDecimal workTime;
-    BigDecimal consumptionM3OnYear;
-    BigDecimal consumptionLiterOnYear;
-    BigDecimal consumptionKgOnYear;
-    BigDecimal consumptionTonOnYear;
+    BigDecimal consumptionM3OnMonth;
+    BigDecimal consumptionLiterOnMonth;
+    BigDecimal consumptionKgOnMonth;
+    BigDecimal consumptionTonOnMonth;
     FuelCombustionYearLimitDto yearLimit;
 }

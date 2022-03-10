@@ -7,16 +7,17 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Зарядка аккумулятора | BatteryChargingMothDataDto", description = "объект данных за месяц")
+@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных за месяц")
 public class FuelCombustionPollutionSourceDto extends AbstractDto {
     String name;
     String number;
     FuelCombustionProductionDto production;
-    List<FuelCombustionYearLimitDto> yearLimits;
+    List<FuelCombustionFuelTypeDto> fuelTypes;
 }

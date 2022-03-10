@@ -29,9 +29,9 @@ public class FuelCombustionYearLimit extends AbstractEntity {
     BigDecimal consumptionKgOnYear;
     @Column(name = "consumption_ton_on_year")
     BigDecimal consumptionTonOnYear;
-    @ManyToOne(targetEntity = BatteryChargingPollutionSource.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "pollution_source_id")
-    FuelCombustionPollutionSource pollutionSource;
+    @ManyToOne(targetEntity = FuelCombustionFuelType.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fuel_type_id")
+    FuelCombustionFuelType fuelType;
     @OneToMany(mappedBy = "yearLimit", fetch = FetchType.EAGER)
     List<FuelCombustionMothData> mothDataList;
 }

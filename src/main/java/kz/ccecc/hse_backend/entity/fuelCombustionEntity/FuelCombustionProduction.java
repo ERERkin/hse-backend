@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FuelCombustionProduction extends AbstractEntity {
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     String name;
     @OneToMany(mappedBy = "production", fetch = FetchType.EAGER)
     List<FuelCombustionPollutionSource> pollutionSources;

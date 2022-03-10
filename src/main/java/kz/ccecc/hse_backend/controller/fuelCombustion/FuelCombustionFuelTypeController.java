@@ -3,8 +3,9 @@ package kz.ccecc.hse_backend.controller.fuelCombustion;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingPollutionSourceDto;
+import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionFuelTypeDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionPollutionSourceDto;
+import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionFuelTypeService;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionPollutionSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,42 +13,42 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/api/fuel-combustion/pollution-sources")
+@RequestMapping("/v1/api/fuel-combustion/fuel-types")
 @Api(value = "API for fuel combustion pollution source",
-        description = "API for fuel combustion  pollution source", produces = "application/json")
-public class FuelCombustionPollutionSourceController {
+        description = "API for fuel combustion fuel type", produces = "application/json")
+public class FuelCombustionFuelTypeController {
     @Autowired
-    FuelCombustionPollutionSourceService fuelCombustionPollutionSourceService;
+    FuelCombustionFuelTypeService fuelCombustionFuelTypeService;
 
-    @ApiOperation(value = "API for getting pollution source by id")
+    @ApiOperation(value = "API for getting fuel type by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable("id") Long id){
-        return ResponseEntity.ok(fuelCombustionPollutionSourceService.getById(id));
+        return ResponseEntity.ok(fuelCombustionFuelTypeService.getById(id));
     }
 
-    @ApiOperation(value = "API for creating and updating pollution source")
+    @ApiOperation(value = "API for creating and updating fuel type")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping()
-    public ResponseEntity<?> save(@RequestBody FuelCombustionPollutionSourceDto pollutionSource){
-        return ResponseEntity.ok(fuelCombustionPollutionSourceService.save(pollutionSource));
+    public ResponseEntity<?> save(@RequestBody FuelCombustionFuelTypeDto fuelTypeDto){
+        return ResponseEntity.ok(fuelCombustionFuelTypeService.save(fuelTypeDto));
     }
 
-    @ApiOperation(value = "API for getting all pollution sources")
+    @ApiOperation(value = "API for getting all fuel types")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<?> getAll(){
-        return ResponseEntity.ok(fuelCombustionPollutionSourceService.getAll());
+        return ResponseEntity.ok(fuelCombustionFuelTypeService.getAll());
     }
 
-    @ApiOperation(value = "API for deleting pollution source by id")
+    @ApiOperation(value = "API for deleting fuel type by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@ApiParam(name = "id",
-            value = "Battery charging pollution source's id",
+            value = "Battery charging fuel type's id",
             required = true)
             @PathVariable("id") Long id){
-        fuelCombustionPollutionSourceService.deleteById(id);
+        fuelCombustionFuelTypeService.deleteById(id);
         return ResponseEntity.ok("Success");
     }
 }

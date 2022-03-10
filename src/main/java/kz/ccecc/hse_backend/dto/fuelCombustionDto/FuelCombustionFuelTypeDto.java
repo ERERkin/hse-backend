@@ -2,7 +2,6 @@ package kz.ccecc.hse_backend.dto.fuelCombustionDto;
 
 import io.swagger.annotations.ApiModel;
 import kz.ccecc.hse_backend.dto.base.AbstractDto;
-import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionPollutionSource;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -16,12 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @SuperBuilder
 @ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных за месяц")
-public class FuelCombustionYearLimitDto extends AbstractDto {
-    Long year;
-    BigDecimal workTime;
-    BigDecimal consumptionM3OnYear;
-    BigDecimal consumptionKgOnYear;
-    BigDecimal consumptionTonOnYear;
-    FuelCombustionFuelTypeDto fuelType;
-    List<FuelCombustionMothDataDto> mothDataList;
+public class FuelCombustionFuelTypeDto extends AbstractDto {
+    String fuelType;
+    BigDecimal fuelDensity;
+    FuelCombustionPollutionSourceDto pollutionSource;
+    List<FuelCombustionYearLimitDto> yearLimits;
 }

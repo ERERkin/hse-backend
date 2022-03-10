@@ -3,10 +3,12 @@ package kz.ccecc.hse_backend.service.fuelCombustionService.impl;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionFuelTypeDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionPollutionSourceDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearLimitDto;
+import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionFuelType;
 import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionPollutionSource;
 import kz.ccecc.hse_backend.mapper.fuelCombustionMapper.FuelCombustionFuelTypeDtoMapper;
 import kz.ccecc.hse_backend.mapper.fuelCombustionMapper.FuelCombustionPollutionSourceDtoMapper;
 import kz.ccecc.hse_backend.mapper.fuelCombustionMapper.FuelCombustionYearLimitDtoMapper;
+import kz.ccecc.hse_backend.repository.fuelCombustionRepository.FuelCombustionFuelTypeRepository;
 import kz.ccecc.hse_backend.repository.fuelCombustionRepository.FuelCombustionPollutionSourceRepository;
 import kz.ccecc.hse_backend.service.base.AbstractService;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionFuelTypeService;
@@ -23,31 +25,31 @@ import java.util.Objects;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
-public class FuelCombustionPollutionSourceServiceImpl extends AbstractService<FuelCombustionPollutionSource,
-        FuelCombustionPollutionSourceDto,
-        FuelCombustionPollutionSourceRepository,
-        FuelCombustionPollutionSourceDtoMapper> implements FuelCombustionPollutionSourceService {
-    public FuelCombustionPollutionSourceServiceImpl(FuelCombustionPollutionSourceRepository repository, FuelCombustionPollutionSourceDtoMapper mapper) {
-        super(repository, mapper, "fuelCombustionPollutionSource");
+public class FuelCombustionFuelTypeServiceImpl extends AbstractService<FuelCombustionFuelType,
+        FuelCombustionFuelTypeDto,
+        FuelCombustionFuelTypeRepository,
+        FuelCombustionFuelTypeDtoMapper> implements FuelCombustionFuelTypeService {
+    public FuelCombustionFuelTypeServiceImpl(FuelCombustionFuelTypeRepository repository, FuelCombustionFuelTypeDtoMapper mapper) {
+        super(repository, mapper, "fuelCombustionFuelType");
     }
 
     @Autowired
-    FuelCombustionFuelTypeDtoMapper fuelCombustionFuelTypeDtoMapper;
+    FuelCombustionYearLimitDtoMapper fuelCombustionYearLimitDtoMapper;
     @Autowired
-    FuelCombustionFuelTypeService fuelCombustionFuelTypeService;
+    FuelCombustionYearLimitService fuelCombustionYearLimitService;
 
     @Override
-    public FuelCombustionPollutionSourceDto save(FuelCombustionPollutionSourceDto item) {
-        FuelCombustionPollutionSourceDto pollutionSourceSaved = super.save(item);
-        if(Objects.isNull(item.getFuelTypes())) return pollutionSourceSaved;
-        List<FuelCombustionFuelTypeDto> fuelTypeDtoList = new ArrayList<>();
-        item.getFuelTypes().forEach(fuelTypeDto -> {
-            fuelTypeDto.setPollutionSource(pollutionSourceSaved);
-            FuelCombustionFuelTypeDto fuelTypeDtoSaved = fuelCombustionFuelTypeService.save(fuelTypeDto);
-            fuelTypeDtoSaved.setPollutionSource(null);
-            fuelTypeDtoList.add(fuelTypeDtoSaved);
+    public FuelCombustionFuelTypeDto save(FuelCombustionFuelTypeDto item) {
+        FuelCombustionFuelTypeDto fuelTypeSaved = super.save(item);
+        if(Objects.isNull(item.getYearLimits())) return fuelTypeSaved;
+        List<FuelCombustionYearLimitDto> yearLimits = new ArrayList<>();
+        item.getYearLimits().forEach(yearLimitDto -> {
+            yearLimitDto.setFuelType(fuelTypeSaved);
+            FuelCombustionYearLimitDto yearLimitSaved = fuelCombustionYearLimitService.save(yearLimitDto);
+            yearLimitSaved.setFuelType(null);
+            yearLimits.add(yearLimitSaved);
         });
-        pollutionSourceSaved.setFuelTypes(fuelTypeDtoList);
-        return pollutionSourceSaved;
+        fuelTypeSaved.setYearLimits(yearLimits);
+        return fuelTypeSaved;
     }
 }

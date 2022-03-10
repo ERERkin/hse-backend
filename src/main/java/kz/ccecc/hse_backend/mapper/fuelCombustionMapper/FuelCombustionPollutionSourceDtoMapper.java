@@ -1,5 +1,6 @@
 package kz.ccecc.hse_backend.mapper.fuelCombustionMapper;
 
+import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionFuelTypeDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionPollutionSourceDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearLimitDto;
 import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionPollutionSource;
@@ -18,14 +19,14 @@ public class FuelCombustionPollutionSourceDtoMapper
     }
 
     @Autowired
-    FuelCombustionYearLimitDtoMapper fuelCombustionYearLimitDtoMapper;
+    FuelCombustionFuelTypeDtoMapper fuelCombustionFuelTypeDtoMapper;
 
     @Override
     public FuelCombustionPollutionSourceDto toDto(FuelCombustionPollutionSource entity) {
-        List<FuelCombustionYearLimitDto> fuelCombustionYearLimitDtoList =
-                fuelCombustionYearLimitDtoMapper.toDtos(entity.getYearLimits());
+        List<FuelCombustionFuelTypeDto> fuelTypeDtoList =
+                fuelCombustionFuelTypeDtoMapper.toDtos(entity.getFuelTypes());
         FuelCombustionPollutionSourceDto fuelCombustionPollutionSourceDto = super.toDto(entity);
-        fuelCombustionPollutionSourceDto.setYearLimits(fuelCombustionYearLimitDtoList);
+        fuelCombustionPollutionSourceDto.setFuelTypes(fuelTypeDtoList);
         return fuelCombustionPollutionSourceDto;
     }
 }

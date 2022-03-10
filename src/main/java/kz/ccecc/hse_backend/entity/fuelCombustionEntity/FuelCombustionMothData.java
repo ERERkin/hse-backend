@@ -24,14 +24,14 @@ public class FuelCombustionMothData extends AbstractEntity {
     @Column(name = "work_time")
     BigDecimal workTime;
     @Column(name = "consumption_m3_on_month")
-    BigDecimal consumptionM3OnYear;
+    BigDecimal consumptionM3OnMonth;
     @Column(name = "consumption_Liter_on_month")
-    BigDecimal consumptionLiterOnYear;
+    BigDecimal consumptionLiterOnMonth;
     @Column(name = "consumption_kg_on_month")
-    BigDecimal consumptionKgOnYear;
+    BigDecimal consumptionKgOnMonth;
     @Column(name = "consumption_ton_on_month")
-    BigDecimal consumptionTonOnYear;
-    @ManyToOne(targetEntity = BatteryChargingYearLimit.class, fetch = FetchType.LAZY)
+    BigDecimal consumptionTonOnMonth;
+    @ManyToOne(targetEntity = FuelCombustionYearLimit.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "year_limit_id")
     FuelCombustionYearLimit yearLimit;
 }
