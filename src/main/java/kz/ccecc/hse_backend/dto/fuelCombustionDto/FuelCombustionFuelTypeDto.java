@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных за месяц")
+@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных  о виде топлива")
 public class FuelCombustionFuelTypeDto extends AbstractDto {
     String fuelType;
     BigDecimal fuelDensity;

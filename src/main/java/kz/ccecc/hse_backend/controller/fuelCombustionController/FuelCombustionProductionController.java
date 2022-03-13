@@ -1,10 +1,9 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingProductionDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionProductionDto;
-import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingProductionService;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/fuel-combustion/productions")
+@Api(value = "API for fuel combustion production",
+        description = "API for fuel combustion production", produces = "application/json")
 public class FuelCombustionProductionController {
     @Autowired
     FuelCombustionProductionService fuelCombustionProductionService;

@@ -1,4 +1,4 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,10 +44,7 @@ public class FuelCombustionMothDataController {
     @ApiOperation(value = "API for deleting month data by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@ApiParam(name = "id",
-            value = "Battery charging month data's id",
-            required = true)
-                                        @PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
         fuelCombustionMothDataService.deleteById(id);
         return ResponseEntity.ok("Success");
     }

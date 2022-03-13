@@ -1,4 +1,4 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

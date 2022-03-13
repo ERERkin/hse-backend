@@ -1,12 +1,10 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionFuelTypeDto;
-import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionPollutionSourceDto;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionFuelTypeService;
-import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionPollutionSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/fuel-combustion/fuel-types")
-@Api(value = "API for fuel combustion pollution source",
+@Api(value = "API for fuel combustion fuel type",
         description = "API for fuel combustion fuel type", produces = "application/json")
 public class FuelCombustionFuelTypeController {
     @Autowired
@@ -44,10 +42,7 @@ public class FuelCombustionFuelTypeController {
     @ApiOperation(value = "API for deleting fuel type by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@ApiParam(name = "id",
-            value = "Battery charging fuel type's id",
-            required = true)
-            @PathVariable("id") Long id){
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
         fuelCombustionFuelTypeService.deleteById(id);
         return ResponseEntity.ok("Success");
     }

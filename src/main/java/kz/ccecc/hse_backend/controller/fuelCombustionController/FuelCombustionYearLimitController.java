@@ -1,9 +1,8 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearLimitDto;
-import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingYearLimitService;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionYearLimitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1/api/fuel-combustion/year-limits")
+@Api(value = "API for fuel combustion fuel type",
+        description = "API for fuel combustion fuel type", produces = "application/json")
 public class FuelCombustionYearLimitController {
     @Autowired
     FuelCombustionYearLimitService fuelCombustionYearLimitService;

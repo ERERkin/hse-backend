@@ -21,9 +21,7 @@ public class BatteryChargingMothDataController {
     @ApiOperation(value = "API for getting month data by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@ApiParam(name = "id",
-            value = "Battery charging month data's id",
-            required = true) @PathVariable("id") Long id) {
+    public ResponseEntity<?> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(batteryChargingMothDataService.getById(id));
     }
 
@@ -44,10 +42,7 @@ public class BatteryChargingMothDataController {
     @ApiOperation(value = "API for deleting month data by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@ApiParam(name = "id",
-            value = "Battery charging month data's id",
-            required = true)
-                                        @PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
         batteryChargingMothDataService.deleteById(id);
         return ResponseEntity.ok("Success");
     }

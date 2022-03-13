@@ -1,9 +1,8 @@
-package kz.ccecc.hse_backend.controller.fuelCombustion;
+package kz.ccecc.hse_backend.controller.fuelCombustionController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingPollutionSourceDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionPollutionSourceDto;
 import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionPollutionSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,10 +42,7 @@ public class FuelCombustionPollutionSourceController {
     @ApiOperation(value = "API for deleting pollution source by id")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@ApiParam(name = "id",
-            value = "Battery charging pollution source's id",
-            required = true)
-            @PathVariable("id") Long id){
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id){
         fuelCombustionPollutionSourceService.deleteById(id);
         return ResponseEntity.ok("Success");
     }

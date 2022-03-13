@@ -1,0 +1,7 @@
+package kz.ccecc.hse_backend.repository.technicalEquipmentSPRRepository;
+
+import kz.ccecc.hse_backend.entity.technicalEquipmentSPREntity.TechnicalEquipmentSPRPollutionSource;
+import kz.ccecc.hse_backend.repository.BaseRepository;
+
+public interface TechnicalEquipmentSPRPollutionSourceRepository extends BaseRepository<TechnicalEquipmentSPRPollutionSource> {
+}
