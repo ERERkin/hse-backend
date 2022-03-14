@@ -20,5 +20,5 @@ public class TechnicalEquipmentSPRMothDataDto extends AbstractDto {
     LocalDate month;
     String count;
     BigDecimal volume;
-    TechnicalEquipmentSPRYearLimit yearLimit;
+    TechnicalEquipmentSPRYearLimitDto yearLimit;
 }

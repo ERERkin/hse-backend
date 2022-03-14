@@ -17,5 +17,5 @@ import java.util.List;
 @ApiModel(value = "ППР тех. обрудования  (стравливание газа ) | TechnicalEquipmentSPRProductionDto", description = "объект данных о производстве")
 public class TechnicalEquipmentSPRProductionDto extends AbstractDto {
     String name;
-    List<TechnicalEquipmentSPRPollutionSource> pollutionSources;
+    List<TechnicalEquipmentSPRPollutionSourceDto> pollutionSources;
 }

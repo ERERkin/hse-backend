@@ -20,6 +20,6 @@ import java.util.List;
 public class TechnicalEquipmentSPRFuelTypeDto extends AbstractDto {
     String fuelType;
     BigDecimal fuelDensity;
-    TechnicalEquipmentSPRPollutionSource pollutionSource;
-    List<TechnicalEquipmentSPRYearLimit> yearLimits;
+    TechnicalEquipmentSPRPollutionSourceDto pollutionSource;
+    List<TechnicalEquipmentSPRYearLimitDto> yearLimits;
 }

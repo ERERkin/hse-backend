@@ -22,7 +22,7 @@ public class FuelCombustionProductionDtoMapper
 
     @Override
     public FuelCombustionProductionDto toDto(FuelCombustionProduction entity) {
-        List<FuelCombustionPollutionSourceDto>  fuelCombustionPollutionSourceDtoList =
+        List<FuelCombustionPollutionSourceDto> fuelCombustionPollutionSourceDtoList =
                 fuelCombustionPollutionSourceDtoMapper.toDtos(entity.getPollutionSources());
         FuelCombustionProductionDto fuelCombustionProductionDto = super.toDto(entity);
         fuelCombustionProductionDto.setPollutionSources(fuelCombustionPollutionSourceDtoList);

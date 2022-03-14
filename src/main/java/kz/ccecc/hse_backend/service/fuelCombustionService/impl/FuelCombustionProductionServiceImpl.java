@@ -36,7 +36,7 @@ public class FuelCombustionProductionServiceImpl extends AbstractService<FuelCom
     @Override
     public FuelCombustionProductionDto save(FuelCombustionProductionDto item) {
         FuelCombustionProductionDto productionSaved = super.save(item);
-        if(Objects.isNull(productionSaved.getPollutionSources())) return productionSaved;
+        if(Objects.isNull(item.getPollutionSources())) return productionSaved;
         List<FuelCombustionPollutionSourceDto> pollutionSources = new ArrayList<>();
         item.getPollutionSources().forEach(pollutionSourceDto -> {
             pollutionSourceDto.setProduction(productionSaved);

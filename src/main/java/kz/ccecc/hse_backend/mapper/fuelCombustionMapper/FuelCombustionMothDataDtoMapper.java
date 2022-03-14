@@ -19,12 +19,12 @@ public class FuelCombustionMothDataDtoMapper
     public FuelCombustionMothDataDtoMapper(ModelMapper mapper) {
         super(mapper, FuelCombustionMothData.class, FuelCombustionMothDataDto.class);
         mapper.createTypeMap(FuelCombustionMothDataDto.class, FuelCombustionMothData.class).addMappings(mr -> {
-            mr.using(new FuelCombustionMothDataDtoMapper.MonthStringToMonthDateConverter()).map(FuelCombustionMothDataDto::getMonth,
+            mr.using(new MonthStringToMonthDateConverter()).map(FuelCombustionMothDataDto::getMonth,
                     FuelCombustionMothData::setMonth);
         });
 
         mapper.createTypeMap(FuelCombustionMothData.class, FuelCombustionMothDataDto.class).addMappings(mr -> {
-            mr.using(new FuelCombustionMothDataDtoMapper.MonthDateToMonthStringConverter()).map(FuelCombustionMothData::getMonth,
+            mr.using(new MonthDateToMonthStringConverter()).map(FuelCombustionMothData::getMonth,
                     FuelCombustionMothDataDto::setMonth);
         });
     }

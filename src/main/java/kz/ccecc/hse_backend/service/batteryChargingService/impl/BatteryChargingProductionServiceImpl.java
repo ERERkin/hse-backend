@@ -37,7 +37,7 @@ public class BatteryChargingProductionServiceImpl extends AbstractService<Batter
     @Override
     public BatteryChargingProductionDto save(BatteryChargingProductionDto item) {
         BatteryChargingProductionDto productionSaved = super.save(item);
-        if(Objects.isNull(productionSaved.getPollutionSources())) return productionSaved;
+        if(Objects.isNull(item.getPollutionSources())) return productionSaved;
         List<BatteryChargingPollutionSourceDto> pollutionSources = new ArrayList<>();
         item.getPollutionSources().forEach(pollutionSourceDto -> {
             pollutionSourceDto.setProduction(productionSaved);

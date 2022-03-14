@@ -19,6 +19,6 @@ import java.util.List;
 public class TechnicalEquipmentSPRPollutionSourceDto extends AbstractDto {
     String name;
     String number;
-    TechnicalEquipmentSPRProduction production;
-    List<TechnicalEquipmentSPRFuelType> fuelTypes;
+    TechnicalEquipmentSPRProductionDto production;
+    List<TechnicalEquipmentSPRFuelTypeDto> fuelTypes;
 }
