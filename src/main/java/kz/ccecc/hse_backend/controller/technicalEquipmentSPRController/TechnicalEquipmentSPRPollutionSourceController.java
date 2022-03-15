@@ -1,4 +1,4 @@
-package kz.ccecc.hse_backend.controller.technicalEquipmentSPR;
+package kz.ccecc.hse_backend.controller.technicalEquipmentSPRController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

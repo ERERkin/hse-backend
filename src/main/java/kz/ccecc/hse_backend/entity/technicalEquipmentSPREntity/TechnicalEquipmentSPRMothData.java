@@ -25,7 +25,7 @@ public class TechnicalEquipmentSPRMothData extends AbstractEntity {
     String count;
     @Column(name = "volume")
     BigDecimal volume;
-    @ManyToOne(targetEntity = FuelCombustionYearLimit.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = TechnicalEquipmentSPRYearLimit.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "year_limit_id")
     TechnicalEquipmentSPRYearLimit yearLimit;
 }

@@ -22,7 +22,7 @@ public class TechnicalEquipmentSPRPollutionSource extends AbstractEntity {
     String name;
     @Column(name = "number")
     String number;
-    @ManyToOne(targetEntity = FuelCombustionProduction.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = TechnicalEquipmentSPRProduction.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "production_id")
     TechnicalEquipmentSPRProduction production;
     @OneToMany(mappedBy = "pollutionSource", fetch = FetchType.EAGER)

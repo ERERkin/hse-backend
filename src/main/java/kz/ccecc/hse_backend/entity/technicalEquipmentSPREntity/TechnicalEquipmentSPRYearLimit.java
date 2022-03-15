@@ -25,7 +25,7 @@ public class TechnicalEquipmentSPRYearLimit extends AbstractEntity {
     String count;
     @Column(name = "volume")
     BigDecimal volume;
-    @ManyToOne(targetEntity = FuelCombustionFuelType.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = TechnicalEquipmentSPRFuelType.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "fuel_type_id")
     TechnicalEquipmentSPRFuelType fuelType;
     @OneToMany(mappedBy = "yearLimit", fetch = FetchType.EAGER)

@@ -14,9 +14,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
+@Qualifier("modelMapper")
 public class BatteryChargingMothDataDtoMapper
         extends AbstractMapper<BatteryChargingMothData, BatteryChargingMothDataDto> {
-    public BatteryChargingMothDataDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingMothDataDtoMapper( ModelMapper mapper) {
         super(mapper, BatteryChargingMothData.class, BatteryChargingMothDataDto.class);
         mapper.createTypeMap(BatteryChargingMothDataDto.class, BatteryChargingMothData.class).addMappings(mr -> {
             mr.using(new MonthStringToMonthDateConverter()).map(BatteryChargingMothDataDto::getMonth,

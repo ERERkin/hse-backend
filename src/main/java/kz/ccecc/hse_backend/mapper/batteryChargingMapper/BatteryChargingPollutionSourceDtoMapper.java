@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@Qualifier("modelMapper")
 public class BatteryChargingPollutionSourceDtoMapper
         extends AbstractMapper<BatteryChargingPollutionSource, BatteryChargingPollutionSourceDto> {
-    public BatteryChargingPollutionSourceDtoMapper(@Qualifier("modelMapper") ModelMapper mapper) {
+    public BatteryChargingPollutionSourceDtoMapper(ModelMapper mapper) {
         super(mapper, BatteryChargingPollutionSource.class, BatteryChargingPollutionSourceDto.class);
     }
 

@@ -11,12 +11,15 @@ import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipm
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRYearLimitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class TechnicalEquipmentSPRYearLimitServiceImpl extends AbstractService<TechnicalEquipmentSPRYearLimit,
         TechnicalEquipmentSPRYearLimitDto,
         TechnicalEquipmentSPRYearLimitRepository,
@@ -38,7 +41,7 @@ public class TechnicalEquipmentSPRYearLimitServiceImpl extends AbstractService<T
             TechnicalEquipmentSPRMothDataDto mothDataSaved =
                     technicalEquipmentSPRMothDataService.save(mothDataDto);
             mothDataSaved.setYearLimit(null);
-            mothDataDtoList.add(mothDataDto);
+            mothDataDtoList.add(mothDataSaved);
         });
         yearLimitSaved.setMothDataList(mothDataDtoList);
         return yearLimitSaved;

@@ -17,7 +17,6 @@ public class FuelCombustionModelExampleController {
     @Autowired
     FuelCombustionModelExampleService fuelCombustionModelExampleService;
 
-
     @ApiOperation(value = "API for getting production example version 1")
     @GetMapping("/production/v1")
     ResponseEntity<?> getProductionV1(){

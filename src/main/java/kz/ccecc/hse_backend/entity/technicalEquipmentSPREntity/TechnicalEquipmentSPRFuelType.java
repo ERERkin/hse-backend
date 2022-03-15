@@ -23,7 +23,7 @@ public class TechnicalEquipmentSPRFuelType extends AbstractEntity {
     String fuelType;
     @Column(name = "fuel_density")
     BigDecimal fuelDensity;
-    @ManyToOne(targetEntity = FuelCombustionPollutionSource.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = TechnicalEquipmentSPRPollutionSource.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "pollution_source_id")
     TechnicalEquipmentSPRPollutionSource pollutionSource;
     @OneToMany(mappedBy = "fuelType", fetch = FetchType.EAGER)

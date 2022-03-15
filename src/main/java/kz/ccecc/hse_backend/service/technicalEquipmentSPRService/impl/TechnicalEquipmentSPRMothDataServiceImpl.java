@@ -7,8 +7,11 @@ import kz.ccecc.hse_backend.repository.technicalEquipmentSPRRepository.Technical
 import kz.ccecc.hse_backend.service.base.AbstractService;
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRMothDataService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class TechnicalEquipmentSPRMothDataServiceImpl extends AbstractService<TechnicalEquipmentSPRMothData,
         TechnicalEquipmentSPRMothDataDto,
         TechnicalEquipmentSPRMothDataRepository,

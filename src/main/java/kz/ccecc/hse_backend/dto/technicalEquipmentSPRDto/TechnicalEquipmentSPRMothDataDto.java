@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @ApiModel(value = "ППР тех. обрудования  (стравливание газа ) | TechnicalEquipmentSPRMothDataDto", description = "объект данных за месяц")
 public class TechnicalEquipmentSPRMothDataDto extends AbstractDto {
-    LocalDate month;
+    String month;
     String count;
     BigDecimal volume;
     TechnicalEquipmentSPRYearLimitDto yearLimit;

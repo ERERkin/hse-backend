@@ -10,12 +10,15 @@ import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipm
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRPollutionSourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED)
 public class TechnicalEquipmentSPRPollutionSourceServiceImpl extends AbstractService<TechnicalEquipmentSPRPollutionSource,
         TechnicalEquipmentSPRPollutionSourceDto,
         TechnicalEquipmentSPRPollutionSourceRepository,

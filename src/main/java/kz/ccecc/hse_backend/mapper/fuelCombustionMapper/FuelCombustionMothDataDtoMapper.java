@@ -8,12 +8,14 @@ import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
 import kz.ccecc.hse_backend.mapper.batteryChargingMapper.BatteryChargingMothDataDtoMapper;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Component
+@Qualifier("modelMapper")
 public class FuelCombustionMothDataDtoMapper
         extends AbstractMapper<FuelCombustionMothData, FuelCombustionMothDataDto> {
     public FuelCombustionMothDataDtoMapper(ModelMapper mapper) {

@@ -1,11 +1,8 @@
-package kz.ccecc.hse_backend.controller.technicalEquipmentSPR;
+package kz.ccecc.hse_backend.controller.technicalEquipmentSPRController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionFuelTypeDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRProductionDto;
-import kz.ccecc.hse_backend.service.fuelCombustionService.FuelCombustionFuelTypeService;
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
