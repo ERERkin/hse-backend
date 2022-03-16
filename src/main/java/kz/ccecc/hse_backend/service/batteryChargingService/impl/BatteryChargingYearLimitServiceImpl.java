@@ -31,25 +31,6 @@ public class BatteryChargingYearLimitServiceImpl extends AbstractService<Battery
     BatteryChargingMothDataService batteryChargingMothDataService;
 
     @Override
-    public BatteryChargingYearLimitDto getById(Long id) {
-        BatteryChargingYearLimitDto batteryChargingYearLimitDto = super.getById(id);
-        if(Objects.nonNull(batteryChargingYearLimitDto.getId()) &&
-                Objects.nonNull(batteryChargingYearLimitDto.getYear())){
-            List<BatteryChargingQuarterDataDto> batteryChargingQuarterDataDtoList = new ArrayList<>();
-            for(int i = 1; i <= 4; i++){
-                BatteryChargingQuarterDataDto batteryChargingQuarterDataDto = batteryChargingMothDataService.getQuarterDateByYearAndQuarterNum(
-                        batteryChargingYearLimitDto.getId(),
-                        batteryChargingYearLimitDto.getYear(),
-                        (long) i);
-                if(Objects.nonNull(batteryChargingQuarterDataDto))
-                    batteryChargingQuarterDataDtoList.add(batteryChargingQuarterDataDto);
-            }
-            batteryChargingYearLimitDto.setQuarterDataList(batteryChargingQuarterDataDtoList);
-        }
-        return batteryChargingYearLimitDto;
-    }
-
-    @Override
     public BatteryChargingYearLimitDto save(BatteryChargingYearLimitDto item) {
         BatteryChargingYearLimitDto batteryChargingYearLimitSaved = super.save(item);
         if(Objects.isNull(item.getMothDataList())) return batteryChargingYearLimitSaved;
@@ -61,40 +42,6 @@ public class BatteryChargingYearLimitServiceImpl extends AbstractService<Battery
             batteryChargingYearLimitDtoList.add(batteryChargingMothDataSaved);
         });
         batteryChargingYearLimitSaved.setMothDataList(batteryChargingYearLimitDtoList);
-        if(Objects.nonNull(batteryChargingYearLimitSaved.getId()) &&
-                Objects.nonNull(batteryChargingYearLimitSaved.getYear())){
-            List<BatteryChargingQuarterDataDto> batteryChargingQuarterDataDtoList = new ArrayList<>();
-            for(int i = 1; i <= 4; i++){
-                BatteryChargingQuarterDataDto batteryChargingQuarterDataDto = batteryChargingMothDataService.getQuarterDateByYearAndQuarterNum(
-                        batteryChargingYearLimitSaved.getId(),
-                        batteryChargingYearLimitSaved.getYear(),
-                        (long) i);
-                if(Objects.nonNull(batteryChargingQuarterDataDto))
-                    batteryChargingQuarterDataDtoList.add(batteryChargingQuarterDataDto);
-            }
-            batteryChargingYearLimitSaved.setQuarterDataList(batteryChargingQuarterDataDtoList);
-        }
         return batteryChargingYearLimitSaved;
-    }
-
-    @Override
-    public List<BatteryChargingYearLimitDto> getAll() {
-        List<BatteryChargingYearLimitDto> batteryChargingYearLimitDtoList = super.getAll();
-        batteryChargingYearLimitDtoList = batteryChargingYearLimitDtoList.stream()
-                .filter(batteryChargingYearLimitDto -> (Objects.nonNull(batteryChargingYearLimitDto.getId()) &&
-                        Objects.nonNull(batteryChargingYearLimitDto.getYear())))
-                .peek(batteryChargingYearLimitDto -> {
-                    List<BatteryChargingQuarterDataDto> batteryChargingQuarterDataDtoList = new ArrayList<>();
-                    for(int i = 1; i <= 4; i++){
-                        BatteryChargingQuarterDataDto batteryChargingQuarterDataDto = batteryChargingMothDataService.getQuarterDateByYearAndQuarterNum(
-                                batteryChargingYearLimitDto.getId(),
-                                batteryChargingYearLimitDto.getYear(),
-                                (long) i);
-                        if(Objects.nonNull(batteryChargingQuarterDataDto))
-                            batteryChargingQuarterDataDtoList.add(batteryChargingQuarterDataDto);
-                    }
-                    batteryChargingYearLimitDto.setQuarterDataList(batteryChargingQuarterDataDtoList);
-                }).collect(Collectors.toList());
-        return batteryChargingYearLimitDtoList;
     }
 }

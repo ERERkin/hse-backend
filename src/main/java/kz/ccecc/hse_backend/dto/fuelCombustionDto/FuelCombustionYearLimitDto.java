@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных о лимите")
+@ApiModel(value = "Сгорание топлива | FuelCombustionYearLimitDto", description = "объект данных о лимите")
 public class FuelCombustionYearLimitDto extends AbstractDto {
     Long year;
     BigDecimal workTime;
@@ -24,4 +24,5 @@ public class FuelCombustionYearLimitDto extends AbstractDto {
     BigDecimal consumptionTonOnYear;
     FuelCombustionFuelTypeDto fuelType;
     List<FuelCombustionMothDataDto> mothDataList;
+    List<FuelCombustionQuarterDataDto> quarterDataList;
 }

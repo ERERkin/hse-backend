@@ -49,6 +49,7 @@ public class BatteryChargingModelExampleServiceImpl implements BatteryChargingMo
         List<BatteryChargingMothDataDto> batteryChargingMothDataDtoList = new ArrayList<>();
         batteryChargingMothDataDtoList.add(getBatteryChargingMothDataExampleV1());
         return BatteryChargingYearLimitDto.builder()
+                .year(2022L)
                 .batteryModel("2V 120-12")
                 .workTime(730.)
                 .batteryCount(32L)

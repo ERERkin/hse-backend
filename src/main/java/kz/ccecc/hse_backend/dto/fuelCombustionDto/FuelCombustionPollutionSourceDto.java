@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Сгорание топлива | BatteryChargingMothDataDto", description = "объект данных об источние выброса")
+@ApiModel(value = "Сгорание топлива | FuelCombustionPollutionSourceDto", description = "объект данных об источние выброса")
 public class FuelCombustionPollutionSourceDto extends AbstractDto {
     String name;
     String number;

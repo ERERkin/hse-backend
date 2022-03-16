@@ -23,4 +23,5 @@ public class TechnicalEquipmentSPRYearLimitDto extends AbstractDto {
     BigDecimal volume;
     TechnicalEquipmentSPRFuelTypeDto fuelType;
     List<TechnicalEquipmentSPRMothDataDto> mothDataList;
+    List<TechnicalEquipmentSPRQuarterDataDto> quarterDataList;
 }

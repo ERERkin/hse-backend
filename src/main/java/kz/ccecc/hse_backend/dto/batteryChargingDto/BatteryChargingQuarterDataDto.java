@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Зарядка аккумулятора | BatteryChargingMothDataDto", description = "объект данных за месяц")
+@ApiModel(value = "Зарядка аккумулятора | BatteryChargingQuarterDataDto", description = "объект данных за квартал")
 public class BatteryChargingQuarterDataDto extends AbstractDto {
     @ApiModelProperty(notes = "Месяц",name="workTime",value="2022-1")
     String quarter;

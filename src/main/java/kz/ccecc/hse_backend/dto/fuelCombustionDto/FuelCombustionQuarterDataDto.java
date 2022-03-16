@@ -8,15 +8,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @RequiredArgsConstructor
 @SuperBuilder
-@ApiModel(value = "Сгорание топлива | FuelCombustionMothDataDto", description = "объект данных за месяц")
-public class FuelCombustionMothDataDto extends AbstractDto {
-    String month;
+@ApiModel(value = "Сгорание топлива | FuelCombustionQuarterDataDto", description = "объект данных за квартал")
+public class FuelCombustionQuarterDataDto extends AbstractDto {
+    String quarter;
     BigDecimal workTime;
     BigDecimal consumptionM3OnMonth;
     BigDecimal consumptionLiterOnMonth;
