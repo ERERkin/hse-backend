@@ -21,6 +21,8 @@ import java.util.List;
 public class FuelCombustionFuelType extends AbstractEntity {
     @Column(name = "fuel_type")
     String fuelType;
+    @Column(name = "fuel_category")
+    String fuelCategory;
     @Column(name = "fuel_density")
     BigDecimal fuelDensity;
     @ManyToOne(targetEntity = FuelCombustionPollutionSource.class, fetch = FetchType.LAZY)

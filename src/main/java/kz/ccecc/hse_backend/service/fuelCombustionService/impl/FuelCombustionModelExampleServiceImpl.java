@@ -18,6 +18,7 @@ public class FuelCombustionModelExampleServiceImpl implements FuelCombustionMode
         return FuelCombustionFuelTypeDto.builder()
                 .fuelType("природный газ")
                 .fuelDensity(BigDecimal.valueOf(0.73))
+                .fuelCategory("топливный газ")
                 .yearLimits(yearLimitDtoList)
                 .build();
     }
@@ -28,6 +29,7 @@ public class FuelCombustionModelExampleServiceImpl implements FuelCombustionMode
         yearLimitDtoList.add(getFuelCombustionYearLimitExampleV2());
         return FuelCombustionFuelTypeDto.builder()
                 .fuelType("дизтопливо")
+                .fuelCategory("дизтопливо")
                 .fuelDensity(BigDecimal.valueOf(840))
                 .yearLimits(yearLimitDtoList)
                 .build();
@@ -39,6 +41,7 @@ public class FuelCombustionModelExampleServiceImpl implements FuelCombustionMode
         yearLimitDtoList.add(getFuelCombustionYearLimitExampleV3());
         return FuelCombustionFuelTypeDto.builder()
                 .fuelType("электрод: AWS A5.5 E7015 (аналог УОНИ 13/55)")
+                .fuelCategory("электрод")
                 .fuelDensity(null)
                 .yearLimits(yearLimitDtoList)
                 .build();

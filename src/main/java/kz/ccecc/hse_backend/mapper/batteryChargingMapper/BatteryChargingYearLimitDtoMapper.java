@@ -2,12 +2,14 @@ package kz.ccecc.hse_backend.mapper.batteryChargingMapper;
 
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingMothDataDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingQuarterDataDto;
+import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearDataDto;
 import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingYearLimitDto;
+import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearLimitDto;
 import kz.ccecc.hse_backend.entity.batteryChargingEntity.BatteryChargingYearLimit;
+import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionYearLimit;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
-import kz.ccecc.hse_backend.service.batteryChargingService.BatteryChargingMothDataService;
-import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -39,6 +41,38 @@ public class BatteryChargingYearLimitDtoMapper
                         .toDtos(entity.getMothDataList());
         BatteryChargingYearLimitDto yearLimitDto = super.toDto(entity);
         yearLimitDto.setMothDataList(mothDataDtoList);
+        addQuarterDataList(yearLimitDto, mothDataDtoList);
+        addYearData(yearLimitDto, mothDataDtoList);
+        return yearLimitDto;
+    }
+
+    private void addYearData(BatteryChargingYearLimitDto yearLimitDto, List<BatteryChargingMothDataDto> mothDataDtoList) {
+        if (Objects.nonNull(yearLimitDto.getId()) &&
+                Objects.nonNull(yearLimitDto.getYear())) {
+            BatteryChargingYearDataDto yearDataDto = null;
+            Boolean flag = true;
+            for(BatteryChargingMothDataDto monthDataDto : mothDataDtoList){
+                if(flag){
+                    yearDataDto = BatteryChargingYearDataDto.builder()
+                            .year(yearLimitDto.getYear())
+                            .workTime(monthDataDto.getWorkTime())
+                            .batteryCount(monthDataDto.getBatteryCount())
+                            .batteryCapacity(monthDataDto.getBatteryCapacity())
+                            .build();
+                    flag = false;
+                }else {
+                    yearDataDto.setWorkTime(yearDataDto.getWorkTime() + monthDataDto.getWorkTime());
+                    yearDataDto.setBatteryCount(yearDataDto.getBatteryCount() + monthDataDto.getBatteryCount());
+                    yearDataDto.setBatteryCapacity(yearDataDto.getBatteryCapacity() + monthDataDto.getBatteryCapacity());
+                }
+            }
+            List<BatteryChargingYearDataDto> yearDataDtoList = new ArrayList<>();
+            yearDataDtoList.add(yearDataDto);
+            yearLimitDto.setYearData(yearDataDtoList);
+        }
+    }
+
+    private void addQuarterDataList(BatteryChargingYearLimitDto yearLimitDto, List<BatteryChargingMothDataDto> mothDataDtoList) {
         if (Objects.nonNull(yearLimitDto.getId()) &&
                 Objects.nonNull(yearLimitDto.getYear())) {
             List<BatteryChargingQuarterDataDto> quarterDataDtoList = new ArrayList<>();
@@ -67,7 +101,7 @@ public class BatteryChargingYearLimitDtoMapper
                     quarterDataDtoList.add(quarterDataDto);
                 } else {
                     Integer index = getIndexQuarterDataInList(quarter, quarterDataDtoList);
-                    if(index >= 0) {
+                    if (index >= 0) {
                         quarterDataDtoList.get(index).setWorkTime(quarterDataDto.getWorkTime() + monthDataDto.getWorkTime());
                         quarterDataDtoList.get(index).setBatteryCount(quarterDataDto.getBatteryCount() + monthDataDto.getBatteryCount());
                         quarterDataDtoList.get(index).setBatteryCapacity(quarterDataDto.getBatteryCapacity() + monthDataDto.getBatteryCapacity());
@@ -77,7 +111,6 @@ public class BatteryChargingYearLimitDtoMapper
             });
             yearLimitDto.setQuarterDataList(quarterDataDtoList);
         }
-        return yearLimitDto;
     }
 
     BatteryChargingQuarterDataDto getIfHasQuarterData(String quarter, List<BatteryChargingQuarterDataDto> quarterDataDtoList) {

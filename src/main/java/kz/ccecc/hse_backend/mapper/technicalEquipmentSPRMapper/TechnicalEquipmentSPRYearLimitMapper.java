@@ -1,8 +1,8 @@
 package kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper;
 
-import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionQuarterDataDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRMothDataDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRQuarterDataDto;
+import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRYearDataDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRYearLimitDto;
 import kz.ccecc.hse_backend.entity.technicalEquipmentSPREntity.TechnicalEquipmentSPRYearLimit;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
@@ -40,6 +40,42 @@ public class TechnicalEquipmentSPRYearLimitMapper
                 technicalEquipmentSPRMothDataMapper.toDtos(entity.getMothDataList());
         TechnicalEquipmentSPRYearLimitDto yearLimitDto = super.toDto(entity);
         yearLimitDto.setMothDataList(mothDataDtoList);
+        addQuarterDataList(yearLimitDto, mothDataDtoList);
+        addYearData(yearLimitDto, mothDataDtoList);
+        return yearLimitDto;
+    }
+
+    private void addYearData(TechnicalEquipmentSPRYearLimitDto yearLimitDto, List<TechnicalEquipmentSPRMothDataDto> mothDataDtoList) {
+        if (Objects.nonNull(yearLimitDto.getId()) &&
+                Objects.nonNull(yearLimitDto.getYear())) {
+            TechnicalEquipmentSPRYearDataDto yearDataDto = null;
+            Boolean flag = true;
+            for (TechnicalEquipmentSPRMothDataDto monthDataDto : mothDataDtoList) {
+                if (flag) {
+                    yearDataDto = TechnicalEquipmentSPRYearDataDto.builder()
+                            .year(yearDataDto.getYear())
+                            .count(monthDataDto.getCount())
+                            .volume(monthDataDto.getVolume())
+                            .build();
+                    flag = false;
+                } else {
+                    if (isNumeric(yearDataDto.getCount()) && isNumeric(monthDataDto.getCount())) {
+                        yearDataDto.setCount(
+                                BigDecimal.valueOf(Double.parseDouble(yearDataDto.getCount()))
+                                        .add(BigDecimal.valueOf(Double.parseDouble(monthDataDto.getCount()))).toString());
+                    } else {
+                        yearDataDto.setCount(yearDataDto.getCount());
+                    }
+                    yearDataDto.setVolume(yearDataDto.getVolume().add(monthDataDto.getVolume()));
+                }
+            }
+            List<TechnicalEquipmentSPRYearDataDto> yearDataDtoList = new ArrayList<>();
+            yearDataDtoList.add(yearDataDto);
+            yearLimitDto.setYearData(yearDataDtoList);
+        }
+    }
+
+    private void addQuarterDataList(TechnicalEquipmentSPRYearLimitDto yearLimitDto, List<TechnicalEquipmentSPRMothDataDto> mothDataDtoList) {
         if (Objects.nonNull(yearLimitDto.getId()) &&
                 Objects.nonNull(yearLimitDto.getYear())) {
             List<TechnicalEquipmentSPRQuarterDataDto> quarterDataDtoList = new ArrayList<>();
@@ -68,20 +104,19 @@ public class TechnicalEquipmentSPRYearLimitMapper
                 } else {
                     Integer index = getIndexQuarterDataInList(quarter, quarterDataDtoList);
                     if (index >= 0) {
-                        if(isNumeric(quarterDataDto.getCount()) && isNumeric(monthDataDto.getCount())){
+                        if (isNumeric(quarterDataDto.getCount()) && isNumeric(monthDataDto.getCount())) {
                             quarterDataDtoList.get(index).setCount(
                                     BigDecimal.valueOf(Double.parseDouble(quarterDataDto.getCount()))
                                             .add(BigDecimal.valueOf(Double.parseDouble(monthDataDto.getCount()))).toString());
-                        }else{
+                        } else {
                             quarterDataDtoList.get(index).setCount(quarterDataDto.getCount());
                         }
                         quarterDataDtoList.get(index).setVolume(quarterDataDto.getVolume().add(monthDataDto.getVolume()));
-                   }
+                    }
                 }
             });
             yearLimitDto.setQuarterDataList(quarterDataDtoList);
         }
-        return yearLimitDto;
     }
 
     TechnicalEquipmentSPRQuarterDataDto getIfHasQuarterData(String quarter, List<TechnicalEquipmentSPRQuarterDataDto> quarterDataDtoList) {

@@ -17,6 +17,7 @@ import java.util.List;
 @ApiModel(value = "Сгорание топлива | FuelCombustionFuelTypeDto", description = "объект данных  о виде топлива")
 public class FuelCombustionFuelTypeDto extends AbstractDto {
     String fuelType;
+    String fuelCategory;
     BigDecimal fuelDensity;
     FuelCombustionPollutionSourceDto pollutionSource;
     List<FuelCombustionYearLimitDto> yearLimits;

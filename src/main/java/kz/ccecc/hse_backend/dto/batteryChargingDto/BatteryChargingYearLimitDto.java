@@ -30,4 +30,5 @@ public class BatteryChargingYearLimitDto extends AbstractDto {
     BatteryChargingPollutionSourceDto pollutionSource;
     List<BatteryChargingMothDataDto> mothDataList;
     List<BatteryChargingQuarterDataDto> quarterDataList;
+    List<BatteryChargingYearDataDto> yearData;
 }

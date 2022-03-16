@@ -25,4 +25,5 @@ public class FuelCombustionYearLimitDto extends AbstractDto {
     FuelCombustionFuelTypeDto fuelType;
     List<FuelCombustionMothDataDto> mothDataList;
     List<FuelCombustionQuarterDataDto> quarterDataList;
+    List<FuelCombustionYearDataDto> yearData;
 }

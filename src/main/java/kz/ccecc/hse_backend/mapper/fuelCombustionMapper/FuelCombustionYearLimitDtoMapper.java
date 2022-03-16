@@ -1,8 +1,8 @@
 package kz.ccecc.hse_backend.mapper.fuelCombustionMapper;
 
-import kz.ccecc.hse_backend.dto.batteryChargingDto.BatteryChargingQuarterDataDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionMothDataDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionQuarterDataDto;
+import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearDataDto;
 import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionYearLimitDto;
 import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionYearLimit;
 import kz.ccecc.hse_backend.mapper.base.AbstractMapper;
@@ -37,6 +37,45 @@ public class FuelCombustionYearLimitDtoMapper
                 fuelCombustionMothDataDtoMapper.toDtos(entity.getMothDataList());
         FuelCombustionYearLimitDto yearLimitDto = super.toDto(entity);
         yearLimitDto.setMothDataList(mothDataDtoList);
+        addQuarterDataList(yearLimitDto, mothDataDtoList);
+        addYearData(yearLimitDto, mothDataDtoList);
+        return yearLimitDto;
+    }
+
+    private void addTotal(){};
+
+    private void addYearData(FuelCombustionYearLimitDto yearLimitDto, List<FuelCombustionMothDataDto> mothDataDtoList) {
+        if (Objects.nonNull(yearLimitDto.getId()) &&
+                Objects.nonNull(yearLimitDto.getYear())) {
+            FuelCombustionYearDataDto yearDataDto = null;
+            Boolean flag = true;
+            for(FuelCombustionMothDataDto monthDataDto : mothDataDtoList){
+                if(flag){
+                    yearDataDto = FuelCombustionYearDataDto.builder()
+                            .year(yearLimitDto.getYear())
+                            .workTime(monthDataDto.getWorkTime())
+                            .consumptionKgOnMonth(monthDataDto.getConsumptionKgOnMonth())
+                            .consumptionLiterOnMonth(monthDataDto.getConsumptionLiterOnMonth())
+                            .consumptionTonOnMonth(monthDataDto.getConsumptionTonOnMonth())
+                            .consumptionM3OnMonth(monthDataDto.getConsumptionM3OnMonth())
+                            .build();
+                    flag = false;
+                }else {
+                    yearDataDto.setYear(yearDataDto.getYear());
+                    yearDataDto.setWorkTime(yearDataDto.getWorkTime().add(monthDataDto.getWorkTime()));
+                    yearDataDto.setConsumptionM3OnMonth(yearDataDto.getConsumptionM3OnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
+                    yearDataDto.setConsumptionKgOnMonth(yearDataDto.getConsumptionKgOnMonth().add(monthDataDto.getConsumptionKgOnMonth()));
+                    yearDataDto.setConsumptionLiterOnMonth(yearDataDto.getConsumptionLiterOnMonth().add(monthDataDto.getConsumptionLiterOnMonth()));
+                    yearDataDto.setConsumptionTonOnMonth(yearDataDto.getConsumptionTonOnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
+                }
+            }
+            List<FuelCombustionYearDataDto> yearDataDtoList = new ArrayList<>();
+            yearDataDtoList.add(yearDataDto);
+            yearLimitDto.setYearData(yearDataDtoList);
+        }
+    }
+
+    private void addQuarterDataList(FuelCombustionYearLimitDto yearLimitDto, List<FuelCombustionMothDataDto> mothDataDtoList) {
         if (Objects.nonNull(yearLimitDto.getId()) &&
                 Objects.nonNull(yearLimitDto.getYear())) {
             List<FuelCombustionQuarterDataDto> quarterDataDtoList = new ArrayList<>();
@@ -78,17 +117,16 @@ public class FuelCombustionYearLimitDtoMapper
             });
             yearLimitDto.setQuarterDataList(quarterDataDtoList);
         }
-        return yearLimitDto;
     }
 
-    FuelCombustionQuarterDataDto getIfHasQuarterData(String quarter, List<FuelCombustionQuarterDataDto> quarterDataDtoList) {
+    private FuelCombustionQuarterDataDto getIfHasQuarterData(String quarter, List<FuelCombustionQuarterDataDto> quarterDataDtoList) {
         for (FuelCombustionQuarterDataDto quarterDataDto : quarterDataDtoList) {
             if (Objects.equals(quarter, quarterDataDto.getQuarter())) return quarterDataDto;
         }
         return null;
     }
 
-    Integer getIndexQuarterDataInList(String quarter, List<FuelCombustionQuarterDataDto> quarterDataDtoList) {
+    private Integer getIndexQuarterDataInList(String quarter, List<FuelCombustionQuarterDataDto> quarterDataDtoList) {
         Integer index = -1;
         for (FuelCombustionQuarterDataDto quarterDataDto : quarterDataDtoList) {
             if (Objects.equals(quarter, quarterDataDto.getQuarter())) index++;
