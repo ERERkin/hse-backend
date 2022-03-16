@@ -31,16 +31,6 @@ public class FuelCombustionMothDataDtoMapper
         });
     }
 
-    @Override
-    public FuelCombustionMothData toEntity(FuelCombustionMothDataDto dto) {
-        return super.toEntity(dto);
-    }
-
-    @Override
-    public FuelCombustionMothDataDto toDto(FuelCombustionMothData entity) {
-        return super.toDto(entity);
-    }
-
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final DateTimeFormatter formatterMonth = DateTimeFormatter.ofPattern("yyyy-MM");
 

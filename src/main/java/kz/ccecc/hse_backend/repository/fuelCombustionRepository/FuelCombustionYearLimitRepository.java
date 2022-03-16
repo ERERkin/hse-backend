@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface FuelCombustionYearLimitRepository extends BaseRepository<FuelCombustionYearLimit> {
-//    @Query(value = "from FuelCombustionYearLimit fcyl where fcyl.year = :year")
-//    List<FuelCombustionYearLimit> getFuelCombustionYearLimitByYear(Long year);
+    @Query(value = "from FuelCombustionYearLimit fcyl where fcyl.year = :year")
+    List<FuelCombustionYearLimit> getFuelCombustionYearLimitByYear(Long year);
 }

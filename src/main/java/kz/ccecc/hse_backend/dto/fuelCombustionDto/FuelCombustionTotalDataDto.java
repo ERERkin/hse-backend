@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.HashMap;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,7 +16,8 @@ import java.util.List;
 @SuperBuilder
 @ApiModel(value = "Сгорание топлива | FuelCombustionTotalDataDto", description = "объект данных итоги")
 public class FuelCombustionTotalDataDto extends AbstractDto {
-    List<FuelCombustionMothDataDto> mothDataList;
-    List<FuelCombustionQuarterDataDto> quarterDataList;
+    String category;
+    HashMap<String, FuelCombustionMothDataDto> mothDataDtoHashMap;
+    HashMap<String, FuelCombustionQuarterDataDto> quarterDataDtoHashMap;
     FuelCombustionYearDataDto yearData;
 }
