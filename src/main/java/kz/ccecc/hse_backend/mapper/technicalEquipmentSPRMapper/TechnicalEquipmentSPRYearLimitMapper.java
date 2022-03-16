@@ -66,12 +66,13 @@ public class TechnicalEquipmentSPRYearLimitMapper
                     } else {
                         yearDataDto.setCount(yearDataDto.getCount());
                     }
-                    yearDataDto.setVolume(yearDataDto.getVolume().add(monthDataDto.getVolume()));
+                    if (Objects.isNull(yearDataDto.getVolume()))
+                        yearDataDto.setVolume(monthDataDto.getVolume());
+                    else
+                        yearDataDto.setVolume(yearDataDto.getVolume().add(monthDataDto.getVolume()));
                 }
             }
-            List<TechnicalEquipmentSPRYearDataDto> yearDataDtoList = new ArrayList<>();
-            yearDataDtoList.add(yearDataDto);
-            yearLimitDto.setYearData(yearDataDtoList);
+            yearLimitDto.setYearData(yearDataDto);
         }
     }
 
@@ -111,7 +112,10 @@ public class TechnicalEquipmentSPRYearLimitMapper
                         } else {
                             quarterDataDtoList.get(index).setCount(quarterDataDto.getCount());
                         }
-                        quarterDataDtoList.get(index).setVolume(quarterDataDto.getVolume().add(monthDataDto.getVolume()));
+                        if (Objects.isNull(quarterDataDtoList.get(index).getVolume()))
+                            quarterDataDtoList.get(index).setVolume(monthDataDto.getVolume());
+                        else
+                            quarterDataDtoList.get(index).setVolume(quarterDataDtoList.get(index).getVolume().add(monthDataDto.getVolume()));
                     }
                 }
             });

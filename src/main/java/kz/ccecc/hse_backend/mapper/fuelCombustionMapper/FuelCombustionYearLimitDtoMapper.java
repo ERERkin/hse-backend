@@ -42,15 +42,17 @@ public class FuelCombustionYearLimitDtoMapper
         return yearLimitDto;
     }
 
-    private void addTotal(){};
+    private void addTotal() {
+
+    }
 
     private void addYearData(FuelCombustionYearLimitDto yearLimitDto, List<FuelCombustionMothDataDto> mothDataDtoList) {
         if (Objects.nonNull(yearLimitDto.getId()) &&
                 Objects.nonNull(yearLimitDto.getYear())) {
             FuelCombustionYearDataDto yearDataDto = null;
             Boolean flag = true;
-            for(FuelCombustionMothDataDto monthDataDto : mothDataDtoList){
-                if(flag){
+            for (FuelCombustionMothDataDto monthDataDto : mothDataDtoList) {
+                if (flag) {
                     yearDataDto = FuelCombustionYearDataDto.builder()
                             .year(yearLimitDto.getYear())
                             .workTime(monthDataDto.getWorkTime())
@@ -60,18 +62,36 @@ public class FuelCombustionYearLimitDtoMapper
                             .consumptionM3OnMonth(monthDataDto.getConsumptionM3OnMonth())
                             .build();
                     flag = false;
-                }else {
+                } else {
                     yearDataDto.setYear(yearDataDto.getYear());
-                    yearDataDto.setWorkTime(yearDataDto.getWorkTime().add(monthDataDto.getWorkTime()));
-                    yearDataDto.setConsumptionM3OnMonth(yearDataDto.getConsumptionM3OnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
-                    yearDataDto.setConsumptionKgOnMonth(yearDataDto.getConsumptionKgOnMonth().add(monthDataDto.getConsumptionKgOnMonth()));
-                    yearDataDto.setConsumptionLiterOnMonth(yearDataDto.getConsumptionLiterOnMonth().add(monthDataDto.getConsumptionLiterOnMonth()));
-                    yearDataDto.setConsumptionTonOnMonth(yearDataDto.getConsumptionTonOnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
+
+                    if (Objects.isNull(yearDataDto.getWorkTime()))
+                        yearDataDto.setWorkTime(monthDataDto.getWorkTime());
+                    else
+                        yearDataDto.setWorkTime(yearDataDto.getWorkTime().add(monthDataDto.getWorkTime()));
+
+                    if (Objects.isNull(yearDataDto.getConsumptionM3OnMonth()))
+                        yearDataDto.setConsumptionM3OnMonth(monthDataDto.getConsumptionM3OnMonth());
+                    else
+                        yearDataDto.setConsumptionM3OnMonth(yearDataDto.getConsumptionM3OnMonth().add(monthDataDto.getConsumptionM3OnMonth()));
+
+                    if (Objects.isNull(yearDataDto.getConsumptionKgOnMonth()))
+                        yearDataDto.setConsumptionKgOnMonth(monthDataDto.getConsumptionKgOnMonth());
+                    else
+                        yearDataDto.setConsumptionKgOnMonth(yearDataDto.getConsumptionKgOnMonth().add(monthDataDto.getConsumptionKgOnMonth()));
+
+                    if (Objects.isNull(yearDataDto.getConsumptionLiterOnMonth()))
+                        yearDataDto.setConsumptionLiterOnMonth(monthDataDto.getConsumptionLiterOnMonth());
+                    else
+                        yearDataDto.setConsumptionLiterOnMonth(yearDataDto.getConsumptionLiterOnMonth().add(monthDataDto.getConsumptionLiterOnMonth()));
+
+                    if (Objects.isNull(yearDataDto.getConsumptionTonOnMonth()))
+                        yearDataDto.setConsumptionTonOnMonth(monthDataDto.getConsumptionTonOnMonth());
+                    else
+                        yearDataDto.setConsumptionTonOnMonth(yearDataDto.getConsumptionTonOnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
                 }
             }
-            List<FuelCombustionYearDataDto> yearDataDtoList = new ArrayList<>();
-            yearDataDtoList.add(yearDataDto);
-            yearLimitDto.setYearData(yearDataDtoList);
+            yearLimitDto.setYearData(yearDataDto);
         }
     }
 
@@ -107,11 +127,31 @@ public class FuelCombustionYearLimitDtoMapper
                 } else {
                     Integer index = getIndexQuarterDataInList(quarter, quarterDataDtoList);
                     if (index >= 0) {
-                        quarterDataDtoList.get(index).setWorkTime(quarterDataDto.getWorkTime().add(monthDataDto.getWorkTime()));
-                        quarterDataDtoList.get(index).setConsumptionM3OnMonth(quarterDataDto.getConsumptionM3OnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
-                        quarterDataDtoList.get(index).setConsumptionKgOnMonth(quarterDataDto.getConsumptionKgOnMonth().add(monthDataDto.getConsumptionKgOnMonth()));
-                        quarterDataDtoList.get(index).setConsumptionLiterOnMonth(quarterDataDto.getConsumptionLiterOnMonth().add(monthDataDto.getConsumptionLiterOnMonth()));
-                        quarterDataDtoList.get(index).setConsumptionTonOnMonth(quarterDataDto.getConsumptionTonOnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
+
+                        if (Objects.isNull(quarterDataDtoList.get(index).getWorkTime()))
+                            quarterDataDtoList.get(index).setWorkTime(monthDataDto.getWorkTime());
+                        else
+                            quarterDataDtoList.get(index).setWorkTime(quarterDataDtoList.get(index).getWorkTime().add(monthDataDto.getWorkTime()));
+
+                        if (Objects.isNull(quarterDataDtoList.get(index).getConsumptionM3OnMonth()))
+                            quarterDataDtoList.get(index).setConsumptionM3OnMonth(monthDataDto.getConsumptionM3OnMonth());
+                        else
+                            quarterDataDtoList.get(index).setConsumptionM3OnMonth(quarterDataDtoList.get(index).getConsumptionM3OnMonth().add(monthDataDto.getConsumptionM3OnMonth()));
+
+                        if (Objects.isNull(quarterDataDtoList.get(index).getConsumptionKgOnMonth()))
+                            quarterDataDtoList.get(index).setConsumptionKgOnMonth(monthDataDto.getConsumptionKgOnMonth());
+                        else
+                            quarterDataDtoList.get(index).setConsumptionKgOnMonth(quarterDataDtoList.get(index).getConsumptionKgOnMonth().add(monthDataDto.getConsumptionKgOnMonth()));
+
+                        if (Objects.isNull(quarterDataDtoList.get(index).getConsumptionLiterOnMonth()))
+                            quarterDataDtoList.get(index).setConsumptionLiterOnMonth(monthDataDto.getConsumptionLiterOnMonth());
+                        else
+                            quarterDataDtoList.get(index).setConsumptionLiterOnMonth(quarterDataDtoList.get(index).getConsumptionLiterOnMonth().add(monthDataDto.getConsumptionLiterOnMonth()));
+
+                        if (Objects.isNull(quarterDataDtoList.get(index).getConsumptionTonOnMonth()))
+                            quarterDataDtoList.get(index).setConsumptionTonOnMonth(monthDataDto.getConsumptionTonOnMonth());
+                        else
+                            quarterDataDtoList.get(index).setConsumptionTonOnMonth(quarterDataDtoList.get(index).getConsumptionTonOnMonth().add(monthDataDto.getConsumptionTonOnMonth()));
                     }
                 }
             });

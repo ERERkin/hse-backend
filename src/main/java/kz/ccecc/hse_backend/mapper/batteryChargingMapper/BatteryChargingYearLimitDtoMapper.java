@@ -66,9 +66,7 @@ public class BatteryChargingYearLimitDtoMapper
                     yearDataDto.setBatteryCapacity(yearDataDto.getBatteryCapacity() + monthDataDto.getBatteryCapacity());
                 }
             }
-            List<BatteryChargingYearDataDto> yearDataDtoList = new ArrayList<>();
-            yearDataDtoList.add(yearDataDto);
-            yearLimitDto.setYearData(yearDataDtoList);
+            yearLimitDto.setYearData(yearDataDto);
         }
     }
 
