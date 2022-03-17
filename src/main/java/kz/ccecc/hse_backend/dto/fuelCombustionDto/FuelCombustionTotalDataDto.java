@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.HashMap;
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -20,4 +19,5 @@ public class FuelCombustionTotalDataDto extends AbstractDto {
     HashMap<String, FuelCombustionMothDataDto> mothDataDtoHashMap;
     HashMap<String, FuelCombustionQuarterDataDto> quarterDataDtoHashMap;
     FuelCombustionYearDataDto yearData;
+    FuelCombustionYearLimitDto yearLimit;
 }

@@ -1,9 +1,9 @@
 package kz.ccecc.hse_backend.service.fuelCombustionService;
 
-import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionTotalDataDto;
+import kz.ccecc.hse_backend.dto.fuelCombustionDto.FuelCombustionTotalDataResponse;
 
 import java.util.List;
 
 public interface FuelCombustionTotalService {
-    List<FuelCombustionTotalDataDto> getFuelCombustionTotal(Long year);
+    List<FuelCombustionTotalDataResponse> getFuelCombustionTotal(Long year);
 }

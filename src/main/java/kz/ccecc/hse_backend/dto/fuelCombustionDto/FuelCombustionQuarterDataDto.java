@@ -21,5 +21,8 @@ public class FuelCombustionQuarterDataDto extends AbstractDto {
     BigDecimal consumptionLiterOnMonth;
     BigDecimal consumptionKgOnMonth;
     BigDecimal consumptionTonOnMonth;
+    BigDecimal consumptionM3OnMonthLimit;
+    BigDecimal consumptionKgOnMonthLimit;
+    BigDecimal consumptionTonOnMonthLimit;
     FuelCombustionYearLimitDto yearLimit;
 }
