@@ -22,8 +22,6 @@ public class FuelCombustionTotalServiceImpl implements FuelCombustionTotalServic
     FuelCombustionYearLimitRepository fuelCombustionYearLimitRepository;
     @Autowired
     FuelCombustionYearLimitDtoMapper fuelCombustionYearLimitDtoMapper;
-    @Autowired
-    FuelCombustionMothDataDtoMapper fuelCombustionMothDataDtoMapper;
 
     @Override
     public List<FuelCombustionTotalDataResponse> getFuelCombustionTotal(Long year) {
@@ -121,11 +119,10 @@ public class FuelCombustionTotalServiceImpl implements FuelCombustionTotalServic
     private HashMap<String, FuelCombustionQuarterDataDto> addQuarterDataDtoHashMaps(
             HashMap<String, FuelCombustionQuarterDataDto> dataDtoHashMapInMap,
             HashMap<String, FuelCombustionQuarterDataDto> dataDtoHashMap) {
-        HashMap<String, FuelCombustionQuarterDataDto> dataDtoHashMapAnswer = new HashMap<>();
         for (Map.Entry<String, FuelCombustionQuarterDataDto> quarterDataDto : dataDtoHashMapInMap.entrySet()) {
-            dataDtoHashMapAnswer.put(quarterDataDto.getKey(), addQuarterData(quarterDataDto.getValue(), dataDtoHashMap.get(quarterDataDto.getKey())));
+            dataDtoHashMap.put(quarterDataDto.getKey(), addQuarterData(quarterDataDto.getValue(), dataDtoHashMap.get(quarterDataDto.getKey())));
         }
-        return dataDtoHashMapAnswer;
+        return dataDtoHashMap;
     }
 
     private HashMap<String, FuelCombustionMothDataDto> addMonthDataDtoHashMaps(
@@ -181,7 +178,7 @@ public class FuelCombustionTotalServiceImpl implements FuelCombustionTotalServic
                 .build();
     }
 
-    BigDecimal addBigDemical(BigDecimal one, BigDecimal two) {
+    private BigDecimal addBigDemical(BigDecimal one, BigDecimal two) {
         if(Objects.isNull(one)) one = BigDecimal.ZERO;
         if(Objects.isNull(two)) two = BigDecimal.ZERO;
         return one.add(two);

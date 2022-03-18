@@ -3,7 +3,7 @@ package kz.ccecc.hse_backend.service.technicalEquipmentSPRService.impl;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRFuelTypeDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRYearLimitDto;
 import kz.ccecc.hse_backend.entity.technicalEquipmentSPREntity.TechnicalEquipmentSPRFuelType;
-import kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper.TechnicalEquipmentSPRFuelTypeMapper;
+import kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper.TechnicalEquipmentSPRFuelTypeDtoMapper;
 import kz.ccecc.hse_backend.repository.technicalEquipmentSPRRepository.TechnicalEquipmentSPRFuelTypeRepository;
 import kz.ccecc.hse_backend.service.base.AbstractService;
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRFuelTypeService;
@@ -22,8 +22,8 @@ import java.util.Objects;
 public class TechnicalEquipmentSPRFuelTypeServiceImpl extends AbstractService<TechnicalEquipmentSPRFuelType,
         TechnicalEquipmentSPRFuelTypeDto,
         TechnicalEquipmentSPRFuelTypeRepository,
-        TechnicalEquipmentSPRFuelTypeMapper> implements TechnicalEquipmentSPRFuelTypeService {
-    public TechnicalEquipmentSPRFuelTypeServiceImpl(TechnicalEquipmentSPRFuelTypeRepository repository, TechnicalEquipmentSPRFuelTypeMapper mapper) {
+        TechnicalEquipmentSPRFuelTypeDtoMapper> implements TechnicalEquipmentSPRFuelTypeService {
+    public TechnicalEquipmentSPRFuelTypeServiceImpl(TechnicalEquipmentSPRFuelTypeRepository repository, TechnicalEquipmentSPRFuelTypeDtoMapper mapper) {
         super(repository, mapper, "technicalEquipmentSPRFuelType");
     }
 

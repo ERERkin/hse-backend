@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Data
@@ -14,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ApiModel(value = "ППР тех. обрудования  (стравливание газа ) | TechnicalEquipmentSPRTotalDataDto", description = "объект данных итоги")
-public class TechnicalEquipmentSPRTotalDataDto {
-    HashMap<String, TechnicalEquipmentSPRMothDataDto> mothDataDtoHashMap;
-    HashMap<String, TechnicalEquipmentSPRQuarterDataDto> quarterDataDtoHashMap;
+public class TechnicalEquipmentSPRTotalDataResponse {
+    List<TechnicalEquipmentSPRMothDataDto> mothDataList;
+    List<TechnicalEquipmentSPRQuarterDataDto> quarterDataList;
     TechnicalEquipmentSPRYearDataDto yearData;
     TechnicalEquipmentSPRYearLimitDto yearLimit;
 }

@@ -13,19 +13,19 @@ import java.util.List;
 
 @Component
 @Qualifier("modelMapper")
-public class TechnicalEquipmentSPRFuelTypeMapper
+public class TechnicalEquipmentSPRFuelTypeDtoMapper
         extends AbstractMapper<TechnicalEquipmentSPRFuelType, TechnicalEquipmentSPRFuelTypeDto> {
-    public TechnicalEquipmentSPRFuelTypeMapper(ModelMapper mapper) {
+    public TechnicalEquipmentSPRFuelTypeDtoMapper(ModelMapper mapper) {
         super(mapper, TechnicalEquipmentSPRFuelType.class, TechnicalEquipmentSPRFuelTypeDto.class);
     }
 
     @Autowired
-    TechnicalEquipmentSPRYearLimitMapper technicalEquipmentSPRYearLimitMapper;
+    TechnicalEquipmentSPRYearLimitDtoMapper technicalEquipmentSPRYearLimitDtoMapper;
 
     @Override
     public TechnicalEquipmentSPRFuelTypeDto toDto(TechnicalEquipmentSPRFuelType entity) {
         List<TechnicalEquipmentSPRYearLimitDto> yearLimitDtoList =
-                technicalEquipmentSPRYearLimitMapper.toDtos(entity.getYearLimits());
+                technicalEquipmentSPRYearLimitDtoMapper.toDtos(entity.getYearLimits());
         TechnicalEquipmentSPRFuelTypeDto fuelTypeDto = super.toDto(entity);
         fuelTypeDto.setYearLimits(yearLimitDtoList);
         return fuelTypeDto;

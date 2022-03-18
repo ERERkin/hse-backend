@@ -13,19 +13,19 @@ import java.util.List;
 
 @Component
 @Qualifier("modelMapper")
-public class TechnicalEquipmentSPRProductionMapper
+public class TechnicalEquipmentSPRProductionDtoMapper
         extends AbstractMapper<TechnicalEquipmentSPRProduction, TechnicalEquipmentSPRProductionDto> {
-    public TechnicalEquipmentSPRProductionMapper(ModelMapper mapper) {
+    public TechnicalEquipmentSPRProductionDtoMapper(ModelMapper mapper) {
         super(mapper, TechnicalEquipmentSPRProduction.class, TechnicalEquipmentSPRProductionDto.class);
     }
 
     @Autowired
-    TechnicalEquipmentSPRPollutionSourceMapper technicalEquipmentSPRPollutionSourceMapper;
+    TechnicalEquipmentSPRPollutionSourceDtoMapper technicalEquipmentSPRPollutionSourceDtoMapper;
 
     @Override
     public TechnicalEquipmentSPRProductionDto toDto(TechnicalEquipmentSPRProduction entity) {
         List<TechnicalEquipmentSPRPollutionSourceDto> pollutionSourceDtoList =
-                technicalEquipmentSPRPollutionSourceMapper.toDtos(entity.getPollutionSources());
+                technicalEquipmentSPRPollutionSourceDtoMapper.toDtos(entity.getPollutionSources());
         TechnicalEquipmentSPRProductionDto productionDto = super.toDto(entity);
         productionDto.setPollutionSources(pollutionSourceDtoList);
         return productionDto;

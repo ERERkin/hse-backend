@@ -16,9 +16,9 @@ import java.time.format.DateTimeFormatter;
 
 @Component
 @Qualifier("modelMapper")
-public class TechnicalEquipmentSPRMothDataMapper
+public class TechnicalEquipmentSPRMothDataDtoMapper
         extends AbstractMapper<TechnicalEquipmentSPRMothData, TechnicalEquipmentSPRMothDataDto> {
-    public TechnicalEquipmentSPRMothDataMapper(ModelMapper mapper) {
+    public TechnicalEquipmentSPRMothDataDtoMapper(ModelMapper mapper) {
         super(mapper, TechnicalEquipmentSPRMothData.class, TechnicalEquipmentSPRMothDataDto.class);
         mapper.createTypeMap(TechnicalEquipmentSPRMothDataDto.class, TechnicalEquipmentSPRMothData.class).addMappings(mr -> {
             mr.using(new MonthStringToMonthDateConverter()).map(TechnicalEquipmentSPRMothDataDto::getMonth,

@@ -3,7 +3,7 @@ package kz.ccecc.hse_backend.service.technicalEquipmentSPRService.impl;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRFuelTypeDto;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.TechnicalEquipmentSPRPollutionSourceDto;
 import kz.ccecc.hse_backend.entity.technicalEquipmentSPREntity.TechnicalEquipmentSPRPollutionSource;
-import kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper.TechnicalEquipmentSPRPollutionSourceMapper;
+import kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper.TechnicalEquipmentSPRPollutionSourceDtoMapper;
 import kz.ccecc.hse_backend.repository.technicalEquipmentSPRRepository.TechnicalEquipmentSPRPollutionSourceRepository;
 import kz.ccecc.hse_backend.service.base.AbstractService;
 import kz.ccecc.hse_backend.service.technicalEquipmentSPRService.TechnicalEquipmentSPRFuelTypeService;
@@ -22,8 +22,8 @@ import java.util.Objects;
 public class TechnicalEquipmentSPRPollutionSourceServiceImpl extends AbstractService<TechnicalEquipmentSPRPollutionSource,
         TechnicalEquipmentSPRPollutionSourceDto,
         TechnicalEquipmentSPRPollutionSourceRepository,
-        TechnicalEquipmentSPRPollutionSourceMapper> implements TechnicalEquipmentSPRPollutionSourceService {
-    public TechnicalEquipmentSPRPollutionSourceServiceImpl(TechnicalEquipmentSPRPollutionSourceRepository repository, TechnicalEquipmentSPRPollutionSourceMapper mapper) {
+        TechnicalEquipmentSPRPollutionSourceDtoMapper> implements TechnicalEquipmentSPRPollutionSourceService {
+    public TechnicalEquipmentSPRPollutionSourceServiceImpl(TechnicalEquipmentSPRPollutionSourceRepository repository, TechnicalEquipmentSPRPollutionSourceDtoMapper mapper) {
         super(repository, mapper, "technicalEquipmentSPRPollutionSource");
     }
 

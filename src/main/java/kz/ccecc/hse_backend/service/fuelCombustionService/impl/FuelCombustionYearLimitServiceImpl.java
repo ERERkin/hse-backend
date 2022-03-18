@@ -56,19 +56,6 @@ public class FuelCombustionYearLimitServiceImpl extends AbstractService<FuelComb
             mothDataDtoList.add(mothDataSaved);
         });
         yearLimitSaved.setMothDataList(mothDataDtoList);
-//        if(Objects.nonNull(FuelCombustionYearLimitSaved.getId()) &&
-//                Objects.nonNull(FuelCombustionYearLimitSaved.getYear())){
-//            List<FuelCombustionQuarterDataDto> FuelCombustionQuarterDataDtoList = new ArrayList<>();
-//            for(int i = 1; i <= 4; i++){
-//                FuelCombustionQuarterDataDto fuelCombustionQuarterDataDto = fuelCombustionMothDataService.getQuarterDateByYearAndQuarterNum(
-//                        FuelCombustionYearLimitSaved.getId(),
-//                        FuelCombustionYearLimitSaved.getYear(),
-//                        (long) i);
-//                if(Objects.nonNull(fuelCombustionQuarterDataDto))
-//                    FuelCombustionQuarterDataDtoList.add(fuelCombustionQuarterDataDto);
-//            }
-//            yearLimitSaved.setQuarterDataList(FuelCombustionQuarterDataDtoList);
-//        }
         return yearLimitSaved;
     }
 }

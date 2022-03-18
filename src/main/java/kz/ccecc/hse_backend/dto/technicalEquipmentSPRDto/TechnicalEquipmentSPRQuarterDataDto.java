@@ -19,4 +19,6 @@ public class TechnicalEquipmentSPRQuarterDataDto extends AbstractDto {
     String count;
     BigDecimal volume;
     TechnicalEquipmentSPRYearLimitDto yearLimit;
+    String countLimit;
+    BigDecimal volumeLimit;
 }
