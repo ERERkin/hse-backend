@@ -1,8 +1,6 @@
 package kz.ccecc.hse_backend.service.technicalEquipmentSPRService.impl;
 
-import kz.ccecc.hse_backend.dto.fuelCombustionDto.*;
 import kz.ccecc.hse_backend.dto.technicalEquipmentSPRDto.*;
-import kz.ccecc.hse_backend.entity.fuelCombustionEntity.FuelCombustionYearLimit;
 import kz.ccecc.hse_backend.entity.technicalEquipmentSPREntity.TechnicalEquipmentSPRYearLimit;
 import kz.ccecc.hse_backend.mapper.technicalEquipmentSPRMapper.TechnicalEquipmentSPRYearLimitDtoMapper;
 import kz.ccecc.hse_backend.repository.technicalEquipmentSPRRepository.TechnicalEquipmentSPRYearLimitRepository;
@@ -24,7 +22,6 @@ public class TechnicalEquipmentSPRTotalServiceImpl implements TechnicalEquipment
     public TechnicalEquipmentSPRTotalDataResponse getTechnicalEquipmentSPRTotal(Long year) {
         List<TechnicalEquipmentSPRYearLimit> yearLimitList = technicalEquipmentSPRYearLimitRepository.getTechnicalEquipmentSPRYearLimitByYear(year);
         List<TechnicalEquipmentSPRYearLimitDto> yearLimitDtoList = technicalEquipmentSPRYearLimitDtoMapper.toDtos(yearLimitList);
-        List<TechnicalEquipmentSPRTotalDataDto> totalDataDtoList = new ArrayList<>();
         TechnicalEquipmentSPRTotalDataDto totalDataDto = null;
 
         for(TechnicalEquipmentSPRYearLimitDto yearLimitDto : yearLimitDtoList){

@@ -119,6 +119,7 @@ public class TechnicalEquipmentSPRYearLimitDtoMapper
                     }
                 }
             });
+
             TechnicalEquipmentSPRQuarterDataDto quarterDataDtoOne = null;
             TechnicalEquipmentSPRQuarterDataDto quarterDataDtoTwo = null;
             TechnicalEquipmentSPRQuarterDataDto quarterDataDtoThree = null;
